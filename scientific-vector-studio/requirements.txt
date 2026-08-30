@@ -1,0 +1,4 @@
+cryptography>=38,<46
+fonttools>=4.55,<5
+numpy>=1.24,<3
+Pillow>=10,<13

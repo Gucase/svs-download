@@ -1,0 +1,125 @@
+# Scientific Vector Studio
+
+将 PNG、JPEG、TIFF 或 WebP 科研示意图重建为可编辑矢量图，并同步到 Adobe Illustrator 或 PowerPoint。
+
+当前为 `v0.3.0-pilot` 公开试用版：直接绘制矢量 + 可编辑图形与文字 + 原图细节比较 + 用户确认验收。
+
+本版独立重写了 Illustrator 文档导入与矢量校验模块，使用原生矢量对象保留路径、文字、颜色及参考图需要的渐变和透明度；已认可图稿不因底层代码更新而重新设计。Python 依赖包与 Adobe / Office 接口继续使用。
+
+## 下载与安装
+
+### Codex 一句话安装（推荐）
+
+在 Codex 本地任务中发送：
+
+> 请使用 skill-installer 安装这个 Skill：https://github.com/Gucase/svs-download/tree/main/scientific-vector-studio ，并安装 requirements.txt 中的依赖。
+
+标准安装器会把 `scientific-vector-studio/` 安装到当前用户的 `$CODEX_HOME/skills`（未设置时通常为 `.codex/skills`）。安装完成后，Skill 会在下一轮对话中可用。Python 依赖安装会单独请求用户批准，这是正常的安全机制。
+
+### 独立安装器
+
+1. 从 [Releases](https://github.com/Gucase/svs-download/releases/latest) 下载 `scientific-vector-studio.zip` 和 `SHA256SUMS.txt`。
+2. 下载本仓库的 `install.ps1`，在其所在目录运行：
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
+```
+
+安装器会校验压缩包 SHA-256，安装到当前用户的 `.codex/skills/scientific-vector-studio`，自动安装所需 Python 包，并运行环境检查。已有版本不会被静默覆盖；需要更新时使用 `-Force`，旧版本会保留为带时间戳的备份。
+
+如果只想重新安装 Python 依赖，可运行：
+
+```powershell
+python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studio\requirements.txt"
+```
+
+使用前请自行打开 Adobe Illustrator 2026（30.x）或 PowerPoint 及目标文档。
+
+## 环境要求
+
+| 项目 | 要求 | 安装器处理方式 |
+|---|---|---|
+| Windows | Windows 10/11，PowerShell 5.1 或更高 | 系统自带，不修改系统设置 |
+| Codex | 支持本地 Skill 的 Codex 桌面环境 | 用户预先安装 |
+| Python | Python 3.8 或更高，带 `pip` | 自动检测；缺失时停止并给出提示 |
+| Python 包 | `cryptography`、`fonttools`、`numpy`、`Pillow` | 自动通过 `requirements.txt` 安装 |
+| Illustrator | Adobe Illustrator 2026 / 30.x | 用户自行安装并打开，仅使用 Illustrator 时需要 |
+| PowerPoint | 支持 SVG 的桌面版 PowerPoint | 用户自行安装并打开，仅使用 PPT 时需要 |
+
+安装器不会静默安装 Python、Adobe Illustrator、Microsoft Office 或 Codex，也不会关闭、启动或修改这些应用。
+
+## 基本用法
+
+1. 在 Codex 中附上 PNG、JPEG、TIFF 或 WebP 参考图。
+2. 说明希望同步到 Illustrator、PowerPoint，或两者都需要。
+3. 自行打开目标应用和文档，再让 Codex 使用 `scientific-vector-studio` 重建。
+4. Skill 测量原图的布局、轮廓、文字和连接关系，直接构建可编辑路径与文本，对照原图调整细节。
+5. Illustrator 通过原生 SVG 导入器打开绘制结果，根据参考图需要使用纯色、渐变、透明度或纯矢量裁剪；PPT 从同一测量场景生成兼容版本，转换后单独检查。
+6. 在应用中查看工作稿并确认效果。你确认“这一版可以了”后，当前视觉版本即按已验收处理；如需保存 AI 文件，再指定保存位置。
+7. 同一原图、同一科研目标下的技术重试、位置纠错以及同步到 Illustrator/PPT，不重复扣费。更换原图、增加科研内容或要求实质不同的构图，按新图计费。
+
+例如：
+
+> 使用 scientific-vector-studio，在我已经打开的 Illustrator 中按这张参考图直接绘制可编辑矢量。不要自动图像描摹，保留可编辑图形和文字，逐项对照细节，完成后让我查看。
+
+## 实际工作流
+
+**读取参考图 → 测量布局和细节 → 直接绘制图形和文字 → 结构校验 → 原图与局部对照 → 修正 → 在 Illustrator 或 PowerPoint 中查看 → 用户确认。**
+
+根据参考图直接绘制可编辑矢量，保留图形布局、文字标注、连接关系及关键细节。纯色、渐变和透明度按参考图需要使用。绘制后与原图进行整体和局部比较，调整图形位置、轮廓、曲线和颜色。
+
+根据用户选择，将绘制结果呈现在 Illustrator 或 PowerPoint 中，供查看和继续编辑。不同应用对渐变和图形的支持可能不同，转换后会分别检查效果。
+
+用户确认当前版本后，即完成视觉验收；如需保存或导出，可进一步指定文件格式和保存位置。
+
+## 绘制示例
+
+以下依次展示同一张科研示意图的原图、Illustrator 绘制结果和 PowerPoint 绘制结果。
+
+### 原图｜非矢量参考图
+
+![原图：非矢量参考图](examples/egcg-sis/reference.jpg)
+
+<sub>图来源于网络。</sub>
+
+### 在 Illustrator 中绘制的可编辑矢量图效果预览
+
+![在 Illustrator 中绘制的可编辑矢量图效果预览](examples/egcg-sis/illustrator-vector-preview.png)
+
+### 在PowerPoint中绘制的可编辑矢量图效果预览
+
+![在PowerPoint中绘制的可编辑矢量图效果预览](examples/egcg-sis/powerpoint-vector-preview.png)
+
+*注：第二、三张为矢量绘制结果的 PNG 预览，PNG 本身不是矢量文件。PowerPoint 预览保留了幻灯片画布的留白。*
+
+## 试用与积分
+
+- 每台本地环境可免费生成 3 张不同图像。
+- 同一原图和科研目标下的技术失败重试、对照原图纠错，以及将同一 Master SVG 同步到 Illustrator/PPT，不重复扣费。
+- 更换原图、增加新的科研内容/面板，或制作实质不同的构图，按一张新图计费。
+- 免费额度用完后，每生成一张新图消耗 10 积分。
+- 100 积分：10 元；500 积分：45 元；1000 积分：85 元。
+- 欢迎关注“队长的生物实验室”微信公众号/小红书。
+- 添加队长的笔记本微信（`XBBen01`），购买 Key。
+
+| 套餐 | 价格 | 可生成新图数量 |
+|---:|---:|---:|
+| 100 积分 | 10 元 | 10 张 |
+| 500 积分 | 45 元 | 50 张 |
+| 1000 积分 | 85 元 | 100 张 |
+
+购买后会获得签名激活 Key。运行以下脚本并按提示粘贴 Key：
+
+```powershell
+& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\activate_key.ps1"
+```
+
+查看剩余免费次数和积分：
+
+```powershell
+& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\license_status.ps1"
+```
+
+## 隐私与安全
+
+参考图默认只在本机处理，不会把未公开科研图片上传到第三方服务。

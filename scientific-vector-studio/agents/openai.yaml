@@ -1,0 +1,5 @@
+interface:
+  display_name: "Scientific Vector Studio"
+  short_description: "Direct scientific vectors, native gradients and live text"
+  brand_color: "#246B78"
+  default_prompt: "Use $scientific-vector-studio to directly redraw my reference as editable vectors in Illustrator, compare details, and show it for review without automatic tracing."

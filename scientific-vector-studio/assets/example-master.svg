@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540">
+  <rect id="background" x="0" y="0" width="960" height="540" fill="#ffffff"/>
+  <rect id="panel-left" x="36" y="68" width="404" height="420" rx="24" fill="#eef7f5" stroke="#246b78" stroke-width="3"/>
+  <rect id="panel-right" x="520" y="68" width="404" height="420" rx="24" fill="#f5f1fb" stroke="#5d3f8c" stroke-width="3"/>
+  <circle id="cell-left" cx="238" cy="280" r="112" fill="#79c7b7" stroke="#246b78" stroke-width="5"/>
+  <ellipse id="nucleus-left" cx="238" cy="280" rx="54" ry="70" fill="#f3b562" stroke="#8c5a20" stroke-width="4"/>
+  <circle id="cell-right" cx="722" cy="280" r="112" fill="#b69ad9" stroke="#5d3f8c" stroke-width="5"/>
+  <ellipse id="nucleus-right" cx="722" cy="280" rx="54" ry="70" fill="#f3b562" stroke="#8c5a20" stroke-width="4"/>
+  <line id="arrow-shaft" x1="388" y1="280" x2="548" y2="280" stroke="#263238" stroke-width="12" stroke-linecap="round"/>
+  <polygon id="arrow-head" points="548,244 612,280 548,316" fill="#263238"/>
+  <circle id="particle-1" cx="170" cy="190" r="12" fill="#e95d6a" stroke="#8f2630" stroke-width="2"/>
+  <circle id="particle-2" cx="202" cy="166" r="12" fill="#e95d6a" stroke="#8f2630" stroke-width="2"/>
+  <circle id="particle-3" cx="750" cy="177" r="12" fill="#4d9de0" stroke="#245d86" stroke-width="2"/>
+  <circle id="particle-4" cx="783" cy="200" r="12" fill="#4d9de0" stroke="#245d86" stroke-width="2"/>
+  <text id="title" x="480" y="42" text-anchor="middle" font-family="Arial" font-size="28" font-weight="bold" fill="#183b45">Cell-state transition</text>
+  <text id="label-left" x="238" y="446" text-anchor="middle" font-family="Arial" font-size="24" fill="#183b45">Initial state</text>
+  <text id="label-right" x="722" y="446" text-anchor="middle" font-family="Arial" font-size="24" fill="#3d2b5f">Engineered state</text>
+  <text id="arrow-label" x="500" y="248" text-anchor="middle" font-family="Arial" font-size="20" fill="#263238">Remodeling</text>
+</svg>
