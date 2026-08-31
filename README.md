@@ -114,7 +114,7 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 - 同一原图和科研目标下的技术失败重试、对照原图纠错，以及同步到 Illustrator/PPT，不重复占用免费次数。
 - 更换原图、增加新的科研内容/面板，或制作实质不同的构图，试用期间按一张新图计次。
 - **39 元一次买断，绑定一台电脑，SVS 不限绘图次数；同机 Illustrator／PowerPoint 共用授权。没有积分套餐和按张扣费。**
-- 不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度；不承诺永久更新、兼容或人工代画服务。
+- 不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。
 - 欢迎关注“队长的生物实验室”微信公众号/小红书。
 - 添加队长的笔记本微信（`XBBen01`），购买 SVS 买断授权文件。
 
