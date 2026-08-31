@@ -14,23 +14,6 @@ SVS 根据参考图重建可编辑的图形和文字，保留布局、颜色及�
 
 标准安装器会把 `scientific-vector-studio/` 安装到当前用户的 `$CODEX_HOME/skills`（未设置时通常为 `.codex/skills`）。安装完成后，Skill 会在下一轮对话中可用。Python 依赖安装会单独请求用户批准，这是正常的安全机制。
 
-### 独立安装器
-
-1. 从 [Releases](https://github.com/Gucase/svs-download/releases/latest) 下载 `scientific-vector-studio.zip` 和 `SHA256SUMS.txt`。
-2. 下载本仓库的 `install.ps1`，在其所在目录运行：
-
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\install.ps1
-```
-
-安装器会校验压缩包 SHA-256，安装到当前用户的 `.codex/skills/scientific-vector-studio`，自动安装所需 Python 包，并运行环境检查。已有版本不会被静默覆盖；需要更新时使用 `-Force`，旧版本会保留为带时间戳的备份。
-
-如果只想重新安装 Python 依赖，可运行：
-
-```powershell
-python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studio\requirements.txt"
-```
-
 使用前请自行打开 Adobe Illustrator 2026（30.x）或 PowerPoint 及目标文档。
 
 ## 环境要求
