@@ -1,6 +1,12 @@
-# v0.4.0-pilot verification scope
+# v0.5.0-pilot verification scope
 
-## Buyout update (2026-08-31)
+## Machine-bound authorization update (2026-08-31)
+
+New signed payload version 3 binds one machine code to a non-expiring, unlimited buyout. Windows uses the system MachineGuid; only a product/platform-scoped SHA-256 code is displayed. No MAC address, raw identifier transmission, server call, device override or figure cap is added. Existing drawing code and assets are unchanged.
+
+30 Skill tests and 8 owner-tool tests passed. Added checks cover same-machine activation, another-machine file rejection before ledger mutation, rejection after copying an activated ledger, signed-machine-code tampering, missing/invalid machine codes, stable hashed identifiers, and explicit reissuance for old unbound licenses. Windows PowerShell 5.1 smoke tests cover machine-code retrieval, owner file issuance, import and status with temporary keys/ledgers. No real customer file was issued. Mac/Linux identity branches are not live-device certified; public local code and cloned system IDs are not tamper-proof.
+
+## Original v0.4 buyout verification (2026-08-31)
 
 The licensing-only update replaces credit issuance/spending and the online client with a three-figure trial and CNY 39 signed unlimited `.svslicense` authorization. Historical ledger records are not deleted or silently converted. Drawing implementations and existing illustration files are unchanged.
 

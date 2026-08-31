@@ -8,6 +8,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PrivateKey
@@ -31,7 +32,8 @@ class LicenseFileTests(unittest.TestCase):
         self.public.write_bytes(self.key.public_key().public_bytes(
             serialization.Encoding.PEM, serialization.PublicFormat.SubjectPublicKeyInfo))
         self.file = self.root / "测试 order.svslicense"
-        self.payload = {"product": lm.PRODUCT, "version": 2, "license_type": "lifetime",
+        self.machine_code = lm._local_machine_code()
+        self.payload = {"product": lm.PRODUCT, "version": 3, "license_type": "lifetime", "machine_code": self.machine_code,
                         "license_id": "test-order-1", "customer": "order-1", "issued_at": 1788192000}
         self.write_license()
 
@@ -156,7 +158,7 @@ class LicenseFileTests(unittest.TestCase):
             self.activate()
 
     def test_signed_wrong_product_version_and_entitlement_rejected(self):
-        changes = ({"product": "other"}, {"version": 3}, {"license_type": "credits"},
+        changes = ({"product": "other"}, {"version": 4}, {"license_type": "credits"},
                    {"credits": 100}, {"expires_at": 0}, {"license_id": ""}, {"issued_at": True})
         for change in changes:
             with self.subTest(change=change):
@@ -204,6 +206,62 @@ class LicenseFileTests(unittest.TestCase):
         self.assertTrue(result["unlimited"])
         self.assertNotIn("signature", result)
         self.assertNotIn("customer", result)
+
+    def test_copying_file_to_other_machine_is_rejected_before_state_write(self):
+        with patch.object(lm, "_local_machine_code", return_value="SVS-MACHINE-1." + "b" * 64):
+            with self.assertRaisesRegex(RuntimeError, "LICENSE_MACHINE_MISMATCH"):
+                self.activate()
+        self.assertFalse(self.state.exists())
+
+    def test_copying_activated_state_is_rejected_on_use(self):
+        self.activate()
+        with patch.object(lm, "_local_machine_code", return_value="SVS-MACHINE-1." + "b" * 64):
+            with self.assertRaisesRegex(RuntimeError, "LICENSE_MACHINE_MISMATCH"):
+                self.reserve("copied")
+            with self.assertRaisesRegex(RuntimeError, "LICENSE_MACHINE_MISMATCH"):
+                self.status()
+
+    def test_machine_code_is_signed(self):
+        document = json.loads(self.file.read_text())
+        document["payload"]["machine_code"] = "SVS-MACHINE-1." + "b" * 64
+        self.file.write_text(json.dumps(document))
+        with self.assertRaisesRegex(RuntimeError, "SIGNATURE_INVALID"):
+            self.activate()
+
+    def test_unbound_license_requires_reissue_and_does_not_block_new_file(self):
+        old = dict(self.payload, version=2, license_id="old-unbound")
+        old.pop("machine_code")
+        self.write_license(old)
+        with self.assertRaisesRegex(RuntimeError, "PRODUCT_INVALID"):
+            self.activate()
+        state = lm._empty_state()
+        state["licenses"]["old-unbound"] = {"signed_license": self.sign(old)}
+        self.state.write_text(json.dumps(state))
+        self.assertFalse(self.status()["unlimited"])
+        self.assertTrue(self.status()["unbound_license_needs_reissue"])
+        self.write_license()
+        self.activate()
+        self.assertTrue(self.status()["machine_bound"])
+
+    def test_invalid_machine_code_in_signed_file_is_rejected(self):
+        for value in (None, "", "bad", [self.machine_code]):
+            self.write_license(dict(self.payload, machine_code=value))
+            with self.assertRaisesRegex(RuntimeError, "MACHINE_CODE_INVALID"):
+                self.activate()
+
+    def test_machine_code_is_stable_scoped_hash_not_raw_identity(self):
+        with patch.object(lm, "_machine_identity", return_value=("windows", "test-raw-device-id")):
+            first = lm._local_machine_code()
+            self.assertEqual(first, lm._local_machine_code())
+            self.assertTrue(lm.MACHINE_CODE_RE.fullmatch(first))
+            self.assertNotIn("test-raw-device-id", first)
+        with patch.object(lm, "_machine_identity", return_value=("windows", "other-device")):
+            self.assertNotEqual(first, lm._local_machine_code())
+
+    def test_machine_code_command_does_not_create_usage_state(self):
+        result = self.call(lm.command_machine_code)
+        self.assertEqual(result["machine_code"], self.machine_code)
+        self.assertFalse(self.state.exists())
 
 
 if __name__ == "__main__":

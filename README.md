@@ -2,7 +2,7 @@
 
 将 PNG、JPEG、TIFF 或 WebP 科研示意图重建为可编辑矢量图，并同步到 Adobe Illustrator 或 PowerPoint。
 
-当前为 `v0.4.0-pilot` 买断制版本：3 张免费体验，39 元一次买断，导入授权文件后无限次绘图。
+当前为 `v0.5.0-pilot` 一机一授权版本：3 张免费体验，39 元一次买断，绑定一台电脑无限次绘图。
 
 沿用独立重构的 Illustrator 文档导入与矢量校验模块，使用原生矢量对象保留路径、文字、颜色及参考图需要的渐变和透明度；此次只更新授权方式，绘图实现保持不变。Python 依赖包与 Adobe / Office 接口继续使用。
 
@@ -97,7 +97,7 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 - 免费体验 3 张完整绘图。
 - 同一原图和科研目标下的技术失败重试、对照原图纠错，以及同步到 Illustrator/PPT，不重复占用免费次数。
 - 更换原图、增加新的科研内容/面板，或制作实质不同的构图，试用期间按一张新图计次。
-- **39 元一次买断，导入授权文件后，SVS 不限绘图次数。没有积分套餐和按张扣费。**
+- **39 元一次买断，绑定一台电脑，SVS 不限绘图次数；同机 Illustrator／PowerPoint 共用授权。没有积分套餐和按张扣费。**
 - 不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度；不承诺永久更新、兼容或人工代画服务。
 - 欢迎关注“队长的生物实验室”微信公众号/小红书。
 - 添加队长的笔记本微信（`XBBen01`），购买 SVS 买断授权文件。
@@ -105,9 +105,19 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 | 方案 | 价格 | 绘图次数 |
 |---|---:|---|
 | 免费体验 | 0 元 | 3 张 |
-| 个人买断 | 39 元 | SVS 不限次 |
+| 个人买断 | 39 元 | 授权一台电脑，SVS 不限次 |
 
-购买后会收到一个 `.svslicense` 授权文件，无需复制长 Key 或注册账号。安装支持授权文件的新版 Skill 后，将文件交给 Codex，并说：
+购买前先安装最新版 Skill，让 Codex 获取本机机器码：
+
+> 请使用 SVS 获取这台电脑的机器码。
+
+或在 PowerShell 中运行：
+
+```powershell
+& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\get_machine_code.ps1"
+```
+
+将输出的 `SVS-MACHINE-1.` 开头的完整机器码和订单编号发给队长；无需发送原始设备标识或科研图片。购买后会收到绑定该电脑的 `.svslicense` 授权文件。无需注册账号，将文件交给 Codex，并说：
 
 > 请使用 SVS 导入这个买断授权文件，并检查是否已解锁无限次绘图。
 
@@ -123,7 +133,9 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 & "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\license_status.ps1"
 ```
 
-状态显示 `unlimited: true` 即已解锁。重复导入不会重复计费。授权文件离线验证，不绑定设备，请妥善保存并勿转售或共享。若自定义了 `CODEX_HOME`，请使用实际 Skill 安装路径。旧积分 Key 不适用于本版买断授权，原付费用户如需迁移，请联系队长按订单处理。
+状态显示 `unlimited: true` 和 `machine_bound: true` 即已解锁。同机重复导入不会重复计费；直接复制文件或授权记录到机器码不同的电脑将无法使用。若自定义了 `CODEX_HOME`，请使用实际 Skill 安装路径。
+
+正常换机或重装系统，可凭订单联系队长补发。离线补发无法远程停用旧电脑；机器码依据系统标识，系统克隆或修改公开代码可能绕过限制，因此不承诺绝对防破解。旧积分 Key 和 v0.4 未绑定机器的授权文件不适用于本版，请联系队长按订单和机器码处理迁移。
 
 ## 隐私与安全
 
