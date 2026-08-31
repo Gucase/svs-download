@@ -77,7 +77,7 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 
 #### 原图｜非矢量参考图
 
-![原图：非矢量参考图](examples/egcg-sis/reference.jpg)
+![原图：非矢量参考图](examples/egcg-sis/reference-original.jpg)
 
 <sub>图来源于网络。</sub>
 
