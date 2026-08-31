@@ -54,7 +54,6 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 4. Skill 测量原图的布局、轮廓、文字和连接关系，直接构建可编辑路径与文本，对照原图调整细节。
 5. Illustrator 通过原生 SVG 导入器打开绘制结果，根据参考图需要使用纯色、渐变、透明度或纯矢量裁剪；PPT 从同一测量场景生成兼容版本，转换后单独检查。
 6. 在应用中查看工作稿并确认效果。你确认“这一版可以了”后，当前视觉版本即按已验收处理；如需保存 AI 文件，再指定保存位置。
-7. 同一原图、同一科研目标下的技术重试、位置纠错以及同步到 Illustrator/PPT，不重复占用免费次数。更换原图、增加科研内容或要求实质不同的构图，试用期间按新图计次；买断后不限绘图次数。
 
 例如：
 
@@ -111,7 +110,7 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 - 免费体验 3 张完整绘图。
 - 同一原图和科研目标下的技术失败重试、对照原图纠错，以及同步到 Illustrator/PPT，不重复占用免费次数。
 - 更换原图、增加新的科研内容/面板，或制作实质不同的构图，试用期间按一张新图计次。
-- **39 元一次买断，绑定一台电脑，SVS 不限绘图次数；同机 Illustrator／PowerPoint 共用授权。没有积分套餐和按张扣费。**
+- **39 元一次买断，绑定一台电脑，SVS 不限绘图次数；同机 Illustrator／PowerPoint 共用授权。**
 - 不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。
 - 欢迎关注“队长的生物实验室”微信公众号/小红书。
 - 添加队长的笔记本微信（`XBBen01`），购买 SVS 买断授权文件。
