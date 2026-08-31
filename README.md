@@ -2,7 +2,7 @@
 
 将 PNG、JPEG、TIFF 或 WebP 科研示意图重建为可编辑矢量图，并同步到 Adobe Illustrator 或 PowerPoint。
 
-SVS 使用 Illustrator 文档导入与矢量校验模块，通过原生矢量对象保留路径、文字、颜色，以及参考图需要的渐变和透明度，并支持 Adobe Illustrator 与 PowerPoint 编辑工作流。
+SVS 根据参考图重建可编辑的图形和文字，保留布局、颜色及所需的渐变和透明度，并根据用户选择，将绘制结果同步到 Adobe Illustrator 或 PowerPoint，供查看和继续编辑。
 
 ## 下载与安装
 
