@@ -126,6 +126,15 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 
 > 请使用 SVS 获取这台电脑的机器码。
 
+或在 PowerShell 中运行以下两行：
+
+```powershell
+[Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($false)
+& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\get_machine_code.ps1"
+```
+
+第一行将当前终端的输出编码设为 UTF-8，避免中文输出导致解析报错，不修改授权状态。
+
 将输出的 `SVS-MACHINE-1.` 开头的完整机器码和订单编号发给队长；无需发送原始设备标识或科研图片。购买后会收到绑定该电脑的 `.svslicense` 授权文件。无需注册账号，将文件交给 Codex，并说：
 
 > 请使用 SVS 导入这个买断授权文件，并检查是否已解锁无限次绘图。
