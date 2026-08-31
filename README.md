@@ -74,23 +74,39 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 
 ## 绘制示例
 
-以下依次展示同一张科研示意图的原图、Illustrator 绘制结果和 PowerPoint 绘制结果。
+以下按示例依次展示原图及绘制结果。
 
-### 原图｜非矢量参考图
+### 示例一｜EGCG-SIS
+
+#### 原图｜非矢量参考图
 
 ![原图：非矢量参考图](examples/egcg-sis/reference.jpg)
 
 <sub>图来源于网络。</sub>
 
-### 在 Illustrator 中绘制的可编辑矢量图效果预览
+#### 在 Illustrator 中绘制的可编辑矢量图效果预览
 
 ![在 Illustrator 中绘制的可编辑矢量图效果预览](examples/egcg-sis/illustrator-vector-preview.png)
 
-### 在PowerPoint中绘制的可编辑矢量图效果预览
+#### 在PowerPoint中绘制的可编辑矢量图效果预览
 
 ![在PowerPoint中绘制的可编辑矢量图效果预览](examples/egcg-sis/powerpoint-vector-preview.png)
 
 *注：第二、三张为矢量绘制结果的 PNG 预览，PNG 本身不是矢量文件。PowerPoint 预览保留了幻灯片画布的留白。*
+
+### 示例二｜气孔谱系与体细胞胚发生
+
+#### 原图｜非矢量参考图
+
+![原图：非矢量参考图](examples/stomatal-embryogenesis/reference.jpg)
+
+<sub>图来源于网络。</sub>
+
+#### 在 Illustrator 中绘制的可编辑矢量图效果预览
+
+![在 Illustrator 中绘制的可编辑矢量图效果预览](examples/stomatal-embryogenesis/illustrator-vector-preview.png)
+
+*注：第二张为 Illustrator 矢量绘制结果的 PNG 预览，PNG 本身不是矢量文件。*
 
 ## 免费体验与买断
 
