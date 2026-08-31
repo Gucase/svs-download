@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Local usage ledger and signed activation-key verifier.
+"""Three-figure trial and signed, unlimited buyout-file verifier.
 
 The public skill contains only an Ed25519 public key. The private signing key
 belongs in the separate owner-only admin tool and must never be distributed.
@@ -23,11 +23,11 @@ from typing import Any, Iterator
 PRODUCT = "scientific-vector-studio"
 STATE_VERSION = 1
 FREE_FIGURES = 3
-COST_PER_FIGURE = 10
 PURCHASE_MESSAGE = (
     "欢迎关注“队长的生物实验室”微信公众号/小红书。\n"
-    "添加队长的笔记本微信（XBBen01），购买 Key。\n"
-    "100积分=10元；500积分=45元；1000积分=85元。"
+    "3 张免费体验已用完。39 元一次买断，导入授权文件后不限绘图次数。\n"
+    "添加队长的笔记本微信（XBBen01），购买 SVS 买断授权文件。\n"
+    "不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。"
 )
 
 
@@ -50,7 +50,6 @@ def _empty_state() -> dict[str, Any]:
     return {
         "version": STATE_VERSION,
         "free_figure_limit": FREE_FIGURES,
-        "cost_per_figure": COST_PER_FIGURE,
         "licenses": {},
         "reservations": {},
         "completed": {},
@@ -112,50 +111,77 @@ def _locked_state(path: Path) -> Iterator[dict[str, Any]]:
                 fcntl.flock(lock.fileno(), fcntl.LOCK_UN)
 
 
-def _parse_and_verify_key(token: str, public_key_path: Path) -> dict[str, Any]:
-    try:
-        prefix, payload_part, signature_part = token.strip().split(".")
-    except ValueError as exc:
-        raise RuntimeError("ACTIVATION_KEY_FORMAT_INVALID") from exc
-    if prefix != "SVSKEY1":
-        raise RuntimeError("ACTIVATION_KEY_VERSION_INVALID")
-    if not public_key_path.exists():
+def _verify_license_document(document: Any, public_key_path: Path) -> dict[str, Any]:
+    """Validate a signed buyout document, including when reloaded from the ledger."""
+    if not isinstance(document, dict) or document.get("format") != "svs-license" or document.get("version") != 1:
+        raise RuntimeError("LICENSE_FILE_FORMAT_INVALID")
+    payload = document.get("payload")
+    signature = document.get("signature")
+    if not isinstance(payload, dict) or not isinstance(signature, str):
+        raise RuntimeError("LICENSE_FILE_FORMAT_INVALID")
+    if not public_key_path.is_file():
         raise RuntimeError("PAID_LICENSING_NOT_INITIALIZED")
     try:
         from cryptography.hazmat.primitives import serialization
+        from cryptography.hazmat.primitives.asymmetric.ed25519 import Ed25519PublicKey
     except ImportError as exc:
         raise RuntimeError("CRYPTOGRAPHY_DEPENDENCY_REQUIRED") from exc
-    payload_bytes = _b64decode(payload_part)
-    signature = _b64decode(signature_part)
-    public_key = serialization.load_pem_public_key(public_key_path.read_bytes())
     try:
-        public_key.verify(signature, payload_bytes)
+        public_key = serialization.load_pem_public_key(public_key_path.read_bytes())
+        if not isinstance(public_key, Ed25519PublicKey):
+            raise ValueError("Wrong key type")
+        data = json.dumps(payload, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode("utf-8")
+        public_key.verify(_b64decode(signature), data)
     except Exception as exc:
-        raise RuntimeError("ACTIVATION_KEY_SIGNATURE_INVALID") from exc
-    payload = json.loads(payload_bytes.decode("utf-8"))
-    if payload.get("product") != PRODUCT or payload.get("version") != 1:
-        raise RuntimeError("ACTIVATION_KEY_PRODUCT_INVALID")
-    credits = payload.get("credits")
-    if not isinstance(credits, int) or credits <= 0 or credits % COST_PER_FIGURE != 0:
-        raise RuntimeError("ACTIVATION_KEY_CREDITS_INVALID")
-    license_id = payload.get("license_id")
-    if not isinstance(license_id, str) or not license_id.strip():
-        raise RuntimeError("ACTIVATION_KEY_ID_INVALID")
+        raise RuntimeError("LICENSE_FILE_SIGNATURE_INVALID") from exc
+    if payload.get("product") != PRODUCT or payload.get("version") != 2:
+        raise RuntimeError("LICENSE_FILE_PRODUCT_INVALID")
+    if payload.get("license_type") != "lifetime" or "credits" in payload or "expires_at" in payload:
+        raise RuntimeError("LICENSE_FILE_ENTITLEMENT_INVALID")
+    if not isinstance(payload.get("license_id"), str) or not payload["license_id"].strip():
+        raise RuntimeError("LICENSE_FILE_ID_INVALID")
+    if not isinstance(payload.get("customer"), str) or not payload["customer"].strip():
+        raise RuntimeError("LICENSE_FILE_CUSTOMER_INVALID")
+    if type(payload.get("issued_at")) is not int or payload["issued_at"] <= 0:
+        raise RuntimeError("LICENSE_FILE_DATE_INVALID")
     return payload
 
 
-def _used_for_license(state: dict[str, Any], license_id: str) -> int:
-    completed = sum(
-        int(item.get("cost", 0))
-        for item in state["completed"].values()
-        if item.get("source") == "license" and item.get("license_id") == license_id
-    )
-    reserved = sum(
-        int(item.get("cost", 0))
-        for item in state["reservations"].values()
-        if item.get("source") == "license" and item.get("license_id") == license_id
-    )
-    return completed + reserved
+def _lifetime_license(state: dict[str, Any], public_key_path: Path) -> str | None:
+    found = None
+    for license_id, entry in state["licenses"].items():
+        if "signed_license" not in entry:
+            continue  # Historical entries are retained as data, not paid entitlement.
+        payload = _verify_license_document(entry["signed_license"], public_key_path)
+        if payload["license_id"] != license_id:
+            raise RuntimeError("LICENSE_STATE_INVALID")
+        found = found or license_id
+    return found
+
+
+def command_import_license(args: argparse.Namespace) -> None:
+    source = Path(args.file).expanduser().resolve()
+    if source.stat().st_size > 65536:
+        raise RuntimeError("LICENSE_FILE_TOO_LARGE")
+    try:
+        document = json.loads(source.read_text(encoding="utf-8-sig"))
+    except (UnicodeError, ValueError) as exc:
+        raise RuntimeError("LICENSE_FILE_FORMAT_INVALID") from exc
+    payload = _verify_license_document(document, Path(args.public_key).expanduser().resolve())
+    license_id = payload["license_id"]
+    fingerprint = hashlib.sha256(json.dumps(document, ensure_ascii=False, separators=(",", ":"), sort_keys=True).encode("utf-8")).hexdigest()
+    state_path = Path(args.state).expanduser().resolve()
+    with _locked_state(state_path) as state:
+        existing = state["licenses"].get(license_id)
+        if existing and existing.get("key_fingerprint") != fingerprint:
+            raise RuntimeError("ACTIVATION_KEY_ID_COLLISION")
+        state["licenses"][license_id] = {
+            "signed_license": document, "key_fingerprint": fingerprint,
+            "activated_at": existing.get("activated_at", int(time.time())) if existing else int(time.time()),
+        }
+        _write_state(state_path, state)
+    _emit({"ok": True, "license_id": license_id, "license_type": "lifetime", "unlimited": True,
+           "reused": bool(existing), "message": "买断授权已激活，SVS 不限绘图次数。"})
 
 
 def _free_used(state: dict[str, Any]) -> int:
@@ -167,27 +193,6 @@ def _emit(payload: dict[str, Any], exit_code: int = 0) -> None:
     raise SystemExit(exit_code)
 
 
-def command_activate(args: argparse.Namespace) -> None:
-    state_path = Path(args.state).expanduser().resolve()
-    public_key_path = Path(args.public_key).expanduser().resolve()
-    payload = _parse_and_verify_key(args.key, public_key_path)
-    license_id = payload["license_id"]
-    fingerprint = hashlib.sha256(args.key.strip().encode("utf-8")).hexdigest()
-    with _locked_state(state_path) as state:
-        existing = state["licenses"].get(license_id)
-        if existing and existing.get("key_fingerprint") != fingerprint:
-            raise RuntimeError("ACTIVATION_KEY_ID_COLLISION")
-        state["licenses"][license_id] = {
-            "credits": payload["credits"],
-            "issued_at": payload.get("issued_at"),
-            "customer": payload.get("customer"),
-            "key_fingerprint": fingerprint,
-            "activated_at": int(time.time()),
-        }
-        _write_state(state_path, state)
-    _emit({"ok": True, "license_id": license_id, "credits": payload["credits"]})
-
-
 def command_reserve(args: argparse.Namespace) -> None:
     state_path = Path(args.state).expanduser().resolve()
     usage_id = args.usage_id.strip()
@@ -195,12 +200,22 @@ def command_reserve(args: argparse.Namespace) -> None:
         raise RuntimeError("USAGE_ID_REQUIRED")
     artifact_hash = args.artifact_sha256.lower().strip()
     with _locked_state(state_path) as state:
+        lifetime = _lifetime_license(state, Path(args.public_key).expanduser().resolve())
         if usage_id in state["completed"]:
             _emit({"ok": True, "reused": True, "usage_id": usage_id, "cost": 0})
         if usage_id in state["reservations"]:
             reservation = state["reservations"][usage_id]
+            if lifetime:
+                reservation.update(source="lifetime", license_id=lifetime, cost=0)
+                _write_state(state_path, state)
+            elif reservation.get("source") != "free" or reservation.get("cost", 0) != 0:
+                raise RuntimeError("BUYOUT_FILE_REQUIRED_FOR_OLD_RESERVATION")
             _emit({"ok": True, "reused": False, "usage_id": usage_id, **reservation})
-        if _free_used(state) < FREE_FIGURES:
+        pending_free = sum(1 for item in state["reservations"].values() if item.get("source") == "free")
+        if lifetime:
+            reservation = {"source": "lifetime", "license_id": lifetime, "cost": 0,
+                           "artifact_sha256": artifact_hash, "reserved_at": int(time.time())}
+        elif _free_used(state) + pending_free < FREE_FIGURES:
             reservation = {
                 "source": "free",
                 "cost": 0,
@@ -208,29 +223,11 @@ def command_reserve(args: argparse.Namespace) -> None:
                 "reserved_at": int(time.time()),
             }
         else:
-            reservation = None
-            for license_id, license_data in state["licenses"].items():
-                available = int(license_data["credits"]) - _used_for_license(state, license_id)
-                if available >= COST_PER_FIGURE:
-                    reservation = {
-                        "source": "license",
-                        "license_id": license_id,
-                        "cost": COST_PER_FIGURE,
-                        "artifact_sha256": artifact_hash,
-                        "reserved_at": int(time.time()),
-                    }
-                    break
-            if reservation is None:
-                _emit(
-                    {
-                        "ok": False,
-                        "purchase_required": True,
-                        "message": PURCHASE_MESSAGE,
-                        "free_remaining": 0,
-                        "credits_required": COST_PER_FIGURE,
-                    },
-                    exit_code=4,
-                )
+            if _free_used(state) < FREE_FIGURES and pending_free:
+                _emit({"ok": False, "error": "FREE_FIGURES_RESERVED",
+                       "message": "免费名额已被进行中的绘图占用，请先完成或取消这些绘图。"}, exit_code=2)
+            _emit({"ok": False, "purchase_required": True, "message": PURCHASE_MESSAGE,
+                   "free_remaining": 0, "buyout_price_cny": 39}, exit_code=4)
         state["reservations"][usage_id] = reservation
         _write_state(state_path, state)
     _emit({"ok": True, "reused": False, "usage_id": usage_id, **reservation})
@@ -239,11 +236,16 @@ def command_reserve(args: argparse.Namespace) -> None:
 def command_commit(args: argparse.Namespace) -> None:
     state_path = Path(args.state).expanduser().resolve()
     with _locked_state(state_path) as state:
+        lifetime = _lifetime_license(state, Path(args.public_key).expanduser().resolve())
         if args.usage_id in state["completed"]:
             _emit({"ok": True, "reused": True, "usage_id": args.usage_id})
         reservation = state["reservations"].pop(args.usage_id, None)
         if reservation is None:
             raise RuntimeError("USAGE_RESERVATION_NOT_FOUND")
+        if lifetime:
+            reservation.update(source="lifetime", license_id=lifetime, cost=0)
+        elif reservation.get("source") != "free" or reservation.get("cost", 0) != 0:
+            raise RuntimeError("LIFETIME_LICENSE_REQUIRED")
         reservation["completed_at"] = int(time.time())
         state["completed"][args.usage_id] = reservation
         _write_state(state_path, state)
@@ -262,22 +264,24 @@ def command_cancel(args: argparse.Namespace) -> None:
 def command_status(args: argparse.Namespace) -> None:
     state_path = Path(args.state).expanduser().resolve()
     with _locked_state(state_path) as state:
+        lifetime = _lifetime_license(state, Path(args.public_key).expanduser().resolve())
         licenses = []
         for license_id, license_data in state["licenses"].items():
-            used = _used_for_license(state, license_id)
-            licenses.append(
-                {
-                    "license_id": license_id,
-                    "credits_total": int(license_data["credits"]),
-                    "credits_available": max(0, int(license_data["credits"]) - used),
-                }
-            )
+            if "signed_license" in license_data:
+                licenses.append({"license_id": license_id, "license_type": "lifetime", "unlimited": True})
+                continue
         payload = {
             "ok": True,
+            "license_type": "lifetime" if lifetime else "trial",
+            "unlimited": bool(lifetime),
             "free_limit": FREE_FIGURES,
             "free_used": _free_used(state),
             "free_remaining": max(0, FREE_FIGURES - _free_used(state)),
-            "cost_per_figure": COST_PER_FIGURE,
+            "free_available": max(0, FREE_FIGURES - _free_used(state) - sum(
+                1 for item in state["reservations"].values() if item.get("source") == "free")),
+            "cost_per_figure": 0,
+            "buyout_price_cny": 39,
+            "free_reserved": sum(1 for item in state["reservations"].values() if item.get("source") == "free"),
             "licenses": licenses,
             "pending_reservations": len(state["reservations"]),
         }
@@ -290,9 +294,9 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--public-key", default=str(_default_public_key_path()))
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    activate = subparsers.add_parser("activate")
-    activate.add_argument("--key", required=True)
-    activate.set_defaults(func=command_activate)
+    import_license = subparsers.add_parser("import-license", help="Import an offline buyout authorization file")
+    import_license.add_argument("--file", required=True)
+    import_license.set_defaults(func=command_import_license)
 
     reserve = subparsers.add_parser("reserve")
     reserve.add_argument("--usage-id", required=True)
@@ -313,7 +317,7 @@ def main() -> None:
     try:
         args = build_parser().parse_args()
         args.func(args)
-    except RuntimeError as exc:
+    except (RuntimeError, OSError, ValueError) as exc:
         _emit({"ok": False, "error": str(exc)}, exit_code=2)
 
 

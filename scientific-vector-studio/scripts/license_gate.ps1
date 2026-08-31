@@ -2,8 +2,9 @@
 
 $script:SvsPurchaseMessage = @'
 欢迎关注“队长的生物实验室”微信公众号/小红书。
-添加队长的笔记本微信（XBBen01），购买 Key。
-100积分=10元；500积分=45元；1000积分=85元。
+3 张免费体验已用完。39 元一次买断，导入授权文件后不限绘图次数。
+添加队长的笔记本微信（XBBen01），购买 SVS 买断授权文件。
+不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。
 '@
 
 function Resolve-SvsPython {
@@ -27,18 +28,12 @@ function Invoke-SvsLicenseManager {
         [string]$LicenseStatePath,
         [string]$LicenseConfigPath
     )
-    $onlineClient = Join-Path $PSScriptRoot 'online_license_client.py'
-    if ([string]::IsNullOrWhiteSpace($LicenseConfigPath)) {
-        $localAppData = [Environment]::GetFolderPath('LocalApplicationData')
-        $LicenseConfigPath = Join-Path $localAppData 'ScientificVectorStudio\online-license.json'
+    if (-not [string]::IsNullOrWhiteSpace($LicenseConfigPath)) {
+        throw 'ONLINE_LICENSING_RETIRED|Use import_license.ps1 for the buyout file; omit LicenseConfigPath.'
     }
-    $online = Test-Path -LiteralPath $LicenseConfigPath -PathType Leaf
-    $manager = $(if ($online) { $onlineClient } else { Join-Path $PSScriptRoot 'license_manager.py' })
+    $manager = Join-Path $PSScriptRoot 'license_manager.py'
     $managerArguments = @('-X', 'utf8', $manager)
-    if ($online) {
-        $managerArguments += @('--config', [IO.Path]::GetFullPath($LicenseConfigPath))
-    }
-    elseif (-not [string]::IsNullOrWhiteSpace($LicenseStatePath)) {
+    if (-not [string]::IsNullOrWhiteSpace($LicenseStatePath)) {
         $managerArguments += @('--state', [IO.Path]::GetFullPath($LicenseStatePath))
     }
     $managerArguments += $Arguments

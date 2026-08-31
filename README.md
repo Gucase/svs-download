@@ -2,9 +2,9 @@
 
 将 PNG、JPEG、TIFF 或 WebP 科研示意图重建为可编辑矢量图，并同步到 Adobe Illustrator 或 PowerPoint。
 
-当前为 `v0.3.0-pilot` 公开试用版：直接绘制矢量 + 可编辑图形与文字 + 原图细节比较 + 用户确认验收。
+当前为 `v0.4.0-pilot` 买断制版本：3 张免费体验，39 元一次买断，导入授权文件后无限次绘图。
 
-本版独立重写了 Illustrator 文档导入与矢量校验模块，使用原生矢量对象保留路径、文字、颜色及参考图需要的渐变和透明度；已认可图稿不因底层代码更新而重新设计。Python 依赖包与 Adobe / Office 接口继续使用。
+沿用独立重构的 Illustrator 文档导入与矢量校验模块，使用原生矢量对象保留路径、文字、颜色及参考图需要的渐变和透明度；此次只更新授权方式，绘图实现保持不变。Python 依赖包与 Adobe / Office 接口继续使用。
 
 ## 下载与安装
 
@@ -56,7 +56,7 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 4. Skill 测量原图的布局、轮廓、文字和连接关系，直接构建可编辑路径与文本，对照原图调整细节。
 5. Illustrator 通过原生 SVG 导入器打开绘制结果，根据参考图需要使用纯色、渐变、透明度或纯矢量裁剪；PPT 从同一测量场景生成兼容版本，转换后单独检查。
 6. 在应用中查看工作稿并确认效果。你确认“这一版可以了”后，当前视觉版本即按已验收处理；如需保存 AI 文件，再指定保存位置。
-7. 同一原图、同一科研目标下的技术重试、位置纠错以及同步到 Illustrator/PPT，不重复扣费。更换原图、增加科研内容或要求实质不同的构图，按新图计费。
+7. 同一原图、同一科研目标下的技术重试、位置纠错以及同步到 Illustrator/PPT，不重复占用免费次数。更换原图、增加科研内容或要求实质不同的构图，试用期间按新图计次；买断后不限绘图次数。
 
 例如：
 
@@ -92,33 +92,38 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 
 *注：第二、三张为矢量绘制结果的 PNG 预览，PNG 本身不是矢量文件。PowerPoint 预览保留了幻灯片画布的留白。*
 
-## 试用与积分
+## 免费体验与买断
 
-- 每台本地环境可免费生成 3 张不同图像。
-- 同一原图和科研目标下的技术失败重试、对照原图纠错，以及将同一 Master SVG 同步到 Illustrator/PPT，不重复扣费。
-- 更换原图、增加新的科研内容/面板，或制作实质不同的构图，按一张新图计费。
-- 免费额度用完后，每生成一张新图消耗 10 积分。
-- 100 积分：10 元；500 积分：45 元；1000 积分：85 元。
+- 免费体验 3 张完整绘图。
+- 同一原图和科研目标下的技术失败重试、对照原图纠错，以及同步到 Illustrator/PPT，不重复占用免费次数。
+- 更换原图、增加新的科研内容/面板，或制作实质不同的构图，试用期间按一张新图计次。
+- **39 元一次买断，导入授权文件后，SVS 不限绘图次数。没有积分套餐和按张扣费。**
+- 不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度；不承诺永久更新、兼容或人工代画服务。
 - 欢迎关注“队长的生物实验室”微信公众号/小红书。
-- 添加队长的笔记本微信（`XBBen01`），购买 Key。
+- 添加队长的笔记本微信（`XBBen01`），购买 SVS 买断授权文件。
 
-| 套餐 | 价格 | 可生成新图数量 |
-|---:|---:|---:|
-| 100 积分 | 10 元 | 10 张 |
-| 500 积分 | 45 元 | 50 张 |
-| 1000 积分 | 85 元 | 100 张 |
+| 方案 | 价格 | 绘图次数 |
+|---|---:|---|
+| 免费体验 | 0 元 | 3 张 |
+| 个人买断 | 39 元 | SVS 不限次 |
 
-购买后会获得签名激活 Key。运行以下脚本并按提示粘贴 Key：
+购买后会收到一个 `.svslicense` 授权文件，无需复制长 Key 或注册账号。安装支持授权文件的新版 Skill 后，将文件交给 Codex，并说：
+
+> 请使用 SVS 导入这个买断授权文件，并检查是否已解锁无限次绘图。
+
+也可在 PowerShell 中执行以下命令，将示例路径换成收到的文件位置：
 
 ```powershell
-& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\activate_key.ps1"
+& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\import_license.ps1" -LicenseFile 'C:\路径\SVS授权.svslicense'
 ```
 
-查看剩余免费次数和积分：
+查看免费次数与买断状态：
 
 ```powershell
 & "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\license_status.ps1"
 ```
+
+状态显示 `unlimited: true` 即已解锁。重复导入不会重复计费。授权文件离线验证，不绑定设备，请妥善保存并勿转售或共享。若自定义了 `CODEX_HOME`，请使用实际 Skill 安装路径。旧积分 Key 不适用于本版买断授权，原付费用户如需迁移，请联系队长按订单处理。
 
 ## 隐私与安全
 

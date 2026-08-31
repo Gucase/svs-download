@@ -17,4 +17,7 @@ apiclient_key.pem
 Thumbs.db
 __pycache__/
 *.py[cod]
+*.svslicense
+license-state.json
+online-license.json
 .pytest_cache/

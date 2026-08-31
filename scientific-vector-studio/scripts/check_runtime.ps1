@@ -1,4 +1,4 @@
-#requires -Version 5.1
+﻿#requires -Version 5.1
 
 [CmdletBinding()]
 param()
@@ -30,17 +30,17 @@ $powerPointProgId = Test-Path -LiteralPath 'Registry::HKEY_CLASSES_ROOT\PowerPoi
 $applicationReady = ($illustratorProgId -or $powerPointProgId)
 $licenseManager = Join-Path $PSScriptRoot 'license_manager.py'
 $comparisonTool = Join-Path $PSScriptRoot 'compare_figure_renders.py'
-$onlineLicenseClient = Join-Path $PSScriptRoot 'online_license_client.py'
+$licenseImporter = Join-Path $PSScriptRoot 'import_license.ps1'
 
 [ordered]@{
-    ok = ($pythonOk -and $cryptographyOk -and $numpyVersion -and $pillowVersion -and (Test-Path -LiteralPath $nativeRunner) -and (Test-Path -LiteralPath $licenseManager) -and (Test-Path -LiteralPath $onlineLicenseClient) -and (Test-Path -LiteralPath $comparisonTool) -and $applicationReady)
+    ok = ($pythonOk -and $cryptographyOk -and $numpyVersion -and $pillowVersion -and (Test-Path -LiteralPath $nativeRunner) -and (Test-Path -LiteralPath $licenseManager) -and (Test-Path -LiteralPath $licenseImporter) -and (Test-Path -LiteralPath $comparisonTool) -and $applicationReady)
     python = $pythonVersion
     fonttools = $fontToolsVersion
     cryptography = $cryptographyOk
     numpy = $numpyVersion
     pillow = $pillowVersion
     license_manager = (Test-Path -LiteralPath $licenseManager)
-    online_license_client = (Test-Path -LiteralPath $onlineLicenseClient)
+    buyout_license_importer = (Test-Path -LiteralPath $licenseImporter)
     comparison_tool = (Test-Path -LiteralPath $comparisonTool)
     native_illustrator_runtime = (Test-Path -LiteralPath $nativeRunner)
     illustrator_30_registered = $illustratorProgId
