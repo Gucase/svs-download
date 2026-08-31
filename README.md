@@ -139,18 +139,6 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 
 > 请使用 SVS 导入这个买断授权文件，并检查是否已解锁无限次绘图。
 
-也可在 PowerShell 中执行以下命令，将示例路径换成收到的文件位置：
-
-```powershell
-& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\import_license.ps1" -LicenseFile 'C:\路径\SVS授权.svslicense'
-```
-
-查看免费次数与买断状态：
-
-```powershell
-& "$env:USERPROFILE\.codex\skills\scientific-vector-studio\scripts\license_status.ps1"
-```
-
 状态显示 `unlimited: true` 和 `machine_bound: true` 即已解锁。同机重复导入不会重复计费；直接复制文件或授权记录到机器码不同的电脑将无法使用。若自定义了 `CODEX_HOME`，请使用实际 Skill 安装路径。
 
 ## 隐私与安全
