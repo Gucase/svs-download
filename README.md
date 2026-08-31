@@ -2,7 +2,7 @@
 
 将 PNG、JPEG、TIFF 或 WebP 科研示意图重建为可编辑矢量图，并同步到 Adobe Illustrator 或 PowerPoint。
 
-沿用独立重构的 Illustrator 文档导入与矢量校验模块，使用原生矢量对象保留路径、文字、颜色及参考图需要的渐变和透明度；此次只更新授权方式，绘图实现保持不变。Python 依赖包与 Adobe / Office 接口继续使用。
+SVS 使用 Illustrator 文档导入与矢量校验模块，通过原生矢量对象保留路径、文字、颜色，以及参考图需要的渐变和透明度，并支持 Adobe Illustrator 与 PowerPoint 编辑工作流。
 
 ## 下载与安装
 
@@ -67,7 +67,7 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 
 根据用户选择，将绘制结果呈现在 Illustrator 或 PowerPoint 中，供查看和继续编辑。不同应用对渐变和图形的支持可能不同，转换后会分别检查效果。
 
-用户确认当前版本后，即完成视觉验收；如需保存或导出，可进一步指定文件格式和保存位置。
+用户确认当前绘制结果后，即完成视觉验收；如需保存或导出，可进一步指定文件格式和保存位置。
 
 ## 绘制示例
 
@@ -120,7 +120,7 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 | 免费体验 | 0 元 | 3 张 |
 | 个人买断 | 39 元 | 授权一台电脑，SVS 不限次 |
 
-购买前先安装最新版 Skill，让 Codex 获取本机机器码：
+购买前先安装 Skill，让 Codex 获取本机机器码：
 
 > 请使用 SVS 获取这台电脑的机器码。
 
