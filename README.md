@@ -2,8 +2,6 @@
 
 将 PNG、JPEG、TIFF 或 WebP 科研示意图重建为可编辑矢量图，并同步到 Adobe Illustrator 或 PowerPoint。
 
-当前为 `v0.5.0-pilot` 一机一授权版本：3 张免费体验，39 元一次买断，绑定一台电脑无限次绘图。
-
 沿用独立重构的 Illustrator 文档导入与矢量校验模块，使用原生矢量对象保留路径、文字、颜色及参考图需要的渐变和透明度；此次只更新授权方式，绘图实现保持不变。Python 依赖包与 Adobe / Office 接口继续使用。
 
 ## 下载与安装
@@ -150,8 +148,6 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 ```
 
 状态显示 `unlimited: true` 和 `machine_bound: true` 即已解锁。同机重复导入不会重复计费；直接复制文件或授权记录到机器码不同的电脑将无法使用。若自定义了 `CODEX_HOME`，请使用实际 Skill 安装路径。
-
-正常换机或重装系统，可凭订单联系队长补发。离线补发无法远程停用旧电脑；机器码依据系统标识，系统克隆或修改公开代码可能绕过限制，因此不承诺绝对防破解。旧积分 Key 和 v0.4 未绑定机器的授权文件不适用于本版，请联系队长按订单和机器码处理迁移。
 
 ## 隐私与安全
 
