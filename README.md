@@ -115,6 +115,8 @@ python -m pip install -r "$env:USERPROFILE\.codex\skills\scientific-vector-studi
 - 欢迎关注“队长的生物实验室”微信公众号/小红书。
 - 添加队长的笔记本微信（`XBBen01`），购买 SVS 买断授权文件。
 
+<img src="assets/wechat-xbben01.png" alt="队长的笔记本微信二维码（XBBen01）" width="280">
+
 | 方案 | 价格 | 绘图次数 |
 |---|---:|---|
 | 免费体验 | 0 元 | 3 张 |
