@@ -3,7 +3,7 @@
 $script:SvsPurchaseMessage = @'
 欢迎关注“队长的生物实验室”微信公众号/小红书。
 1 张免费体验已用完。39 元一次买断，绑定一台电脑不限绘图次数；同机 Illustrator/PowerPoint 共用。
-添加队长的笔记本微信（XBBen01），提供机器码购买 SVS 买断授权文件。
+如需购买，可联系微信 XBBen01 获取与本机绑定的 .svslicense 授权文件。
 不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。
 '@
 

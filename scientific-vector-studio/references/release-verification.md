@@ -1,4 +1,8 @@
-# v0.5.1-pilot verification scope
+# v0.5.2-pilot verification scope
+
+## Contact-data correction (2026-09-01)
+
+The purchase prompt uses the immutable WeChat ID `XBBen01`. The same fixed prompt is used by the Python license manager, PowerShell gate, Skill instructions and licensing reference. The unit test verifies that the correct ID is present and no substituted initial appears in the runtime prompt.
 
 ## One-figure trial update (2026-09-01)
 

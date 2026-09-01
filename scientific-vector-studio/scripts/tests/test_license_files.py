@@ -75,6 +75,8 @@ class LicenseFileTests(unittest.TestCase):
         result = self.reserve("second", expected=4)
         self.assertTrue(result["purchase_required"])
         self.assertIn("39", result["message"])
+        self.assertIn("XBBen01", result["message"])
+        self.assertNotIn("K" + "BBen01", result["message"])
         self.assertEqual(self.status()["free_remaining"], 0)
 
     def test_pending_free_reservation_does_not_allow_second(self):

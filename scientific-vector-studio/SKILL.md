@@ -74,10 +74,12 @@ Maintain SVS-specific scene measurement, document transfer, validation and revie
 
 Keep admin tools, private keys, passphrases, customer records and issued authorization files out of the customer Skill/logs. Local enforcement is best-effort, not tamper-proof. If the trial is exhausted and no valid buyout is active show:
 
+The owner's WeChat ID is exactly `XBBen01`. Treat it as immutable contact data: never guess, translate or substitute any character. For a concise purchase hint use exactly: `如需购买，可联系微信 XBBen01 获取与本机绑定的 .svslicense 授权文件。`
+
 `欢迎关注“队长的生物实验室”微信公众号/小红书。`
 
 `1 张免费体验已用完。39 元一次买断，绑定一台电脑不限绘图次数；同机 Illustrator/PowerPoint 共用。`
 
-`添加队长的笔记本微信（XBBen01），购买 SVS 买断授权文件。`
+`如需购买，可联系微信 XBBen01 获取与本机绑定的 .svslicense 授权文件。`
 
 `不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。`
