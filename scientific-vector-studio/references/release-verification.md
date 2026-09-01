@@ -1,4 +1,10 @@
-# v0.5.0-pilot verification scope
+# v0.5.1-pilot verification scope
+
+## One-figure trial update (2026-09-01)
+
+The free allowance is one unique completed figure. Technical failures, cancelled reservations, corrections using the same generation ID, and delivery of that same figure to Illustrator and PowerPoint do not consume another allowance. A second unique figure is blocked before app mutation unless a valid machine-bound buyout is active.
+
+All 30 Skill tests passed after updating the allowance constant, purchase message and reservation tests. Tests cover the first free figure, rejection of a second unique figure, cancellation of a pending first figure, same-figure reuse and unlimited zero-cost use after buyout. Existing signed buyout files and historical usage records are preserved.
 
 ## Machine-bound authorization update (2026-08-31)
 
@@ -8,7 +14,7 @@ New signed payload version 3 binds one machine code to a non-expiring, unlimited
 
 ## Original v0.4 buyout verification (2026-08-31)
 
-The licensing-only update replaces credit issuance/spending and the online client with a three-figure trial and CNY 39 signed unlimited `.svslicense` authorization. Historical ledger records are not deleted or silently converted. Drawing implementations and existing illustration files are unchanged.
+The licensing-only update replaces credit issuance/spending and the online client with a limited trial and CNY 39 signed unlimited `.svslicense` authorization. Historical ledger records are not deleted or silently converted. Drawing implementations and existing illustration files are unchanged.
 
 Checks: 23 Python Skill tests (including 16 authorization tests) and 7 local owner-tool tests passed. Coverage includes trial reservations/cancellation, same-figure reuse, 100 consecutive post-buyout generations at zero cost, rejection of forged/altered files, revalidation of saved signatures, idempotent import, retirement of old credit issuance/activation and preservation of historical records. The 100-generation exercise is a test sample, not a product limit: the authorization has no balance, usage cap or expiry.
 

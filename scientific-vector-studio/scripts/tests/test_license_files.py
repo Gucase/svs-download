@@ -66,24 +66,23 @@ class LicenseFileTests(unittest.TestCase):
         return self.call(lm.command_commit, usage_id=usage)
 
     def exhaust_trial(self):
-        for i in range(3):
+        for i in range(lm.FREE_FIGURES):
             self.reserve(str(i))
             self.commit(str(i))
 
-    def test_three_figures_then_purchase(self):
+    def test_one_figure_then_purchase(self):
         self.exhaust_trial()
-        result = self.reserve("four", expected=4)
+        result = self.reserve("second", expected=4)
         self.assertTrue(result["purchase_required"])
         self.assertIn("39", result["message"])
         self.assertEqual(self.status()["free_remaining"], 0)
 
-    def test_pending_free_reservations_do_not_allow_fourth(self):
-        for i in range(3):
-            self.reserve(str(i))
-        self.assertEqual(self.reserve("four", expected=2)["error"], "FREE_FIGURES_RESERVED")
+    def test_pending_free_reservation_does_not_allow_second(self):
+        self.reserve("first")
+        self.assertEqual(self.reserve("second", expected=2)["error"], "FREE_FIGURES_RESERVED")
         self.assertEqual(self.status()["free_available"], 0)
-        self.call(lm.command_cancel, usage_id="1")
-        self.assertEqual(self.reserve("four")["source"], "free")
+        self.call(lm.command_cancel, usage_id="first")
+        self.assertEqual(self.reserve("second")["source"], "free")
 
     def test_failure_and_same_figure_retry_are_free(self):
         self.reserve("same")
@@ -114,7 +113,7 @@ class LicenseFileTests(unittest.TestCase):
         status = self.status()
         self.assertTrue(status["unlimited"])
         self.assertEqual(status["cost_per_figure"], 0)
-        self.assertEqual(status["free_used"], 3)
+        self.assertEqual(status["free_used"], 1)
 
     def test_buyout_before_trial_preserves_free_allowance(self):
         self.activate()

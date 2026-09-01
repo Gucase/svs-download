@@ -58,7 +58,7 @@ On successful or user-approved handoff end with:
 
 ## Commercial usage
 
-Three unique figures are free. The only paid offer is a CNY 39 one-time personal buyout for one computer: import an owner-signed `.svslicense` file bound to that computer's machine code and SVS no longer limits figure counts. Illustrator and PowerPoint on the same computer share this authorization. There are no credit packages or per-figure deductions, and no account/server is required. Third-party fees/quotas are not included. Do not promise lifetime updates/support/compatibility or absolute anti-piracy protection. Historical ledger records are retained as data, not automatically converted to a machine-bound buyout.
+One unique figure is free. The only paid offer is a CNY 39 one-time personal buyout for one computer: import an owner-signed `.svslicense` file bound to that computer's machine code and SVS no longer limits figure counts. Illustrator and PowerPoint on the same computer share this authorization. There are no credit packages or per-figure deductions, and no account/server is required. Third-party fees/quotas are not included. Do not promise lifetime updates/support/compatibility or absolute anti-piracy protection. Historical ledger records are retained as data, not automatically converted to a machine-bound buyout.
 
 Before purchase/reissue, run `scripts/get_machine_code.ps1` to obtain the customer's hashed machine code. Send only that code to the owner at the user's request; do not send raw device IDs or research images. Normal machine changes/system reinstalls can be handled by owner-confirmed order-based reissue, not by resetting trial state. Reissue cannot remotely revoke an old offline file. Unbound v0.4 files need explicit reissue; do not silently bind a shared file to whichever computer imports it first.
 
@@ -76,7 +76,7 @@ Keep admin tools, private keys, passphrases, customer records and issued authori
 
 `欢迎关注“队长的生物实验室”微信公众号/小红书。`
 
-`3 张免费体验已用完。39 元一次买断，绑定一台电脑不限绘图次数；同机 Illustrator/PowerPoint 共用。`
+`1 张免费体验已用完。39 元一次买断，绑定一台电脑不限绘图次数；同机 Illustrator/PowerPoint 共用。`
 
 `添加队长的笔记本微信（XBBen01），购买 SVS 买断授权文件。`
 

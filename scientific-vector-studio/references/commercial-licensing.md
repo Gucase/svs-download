@@ -2,7 +2,7 @@
 
 ## Customer offer
 
-Three unique figures are free. After that, CNY 39 buys a personal, non-expiring SVS authorization for one computer with unlimited figure counts. The owner delivers a signed `.svslicense` file bound to the customer's machine code after payment. Illustrator and PowerPoint on that computer share the authorization. No account, server or copied Key string is required. Third-party fees/quotas, guaranteed future updates/support/compatibility are not included.
+One unique figure is free. After that, CNY 39 buys a personal, non-expiring SVS authorization for one computer with unlimited figure counts. The owner delivers a signed `.svslicense` file bound to the customer's machine code after payment. Illustrator and PowerPoint on that computer share the authorization. No account, server or copied Key string is required. Third-party fees/quotas, guaranteed future updates/support/compatibility are not included.
 
 Use one stable generation ID while the reference and scientific brief remain unchanged. Technical failures, corrections and output to both Illustrator and PowerPoint do not consume additional trial figures. New reference images, scientific content/panels or materially different compositions count as new figures during the trial. Reserve before app mutation, commit only on success and cancel failures. Pending reservations occupy free slots until completed or cancelled; do not reset the ledger to release them.
 
@@ -38,10 +38,10 @@ Unbound v0.4 files (payload version 2) cannot be imported or used as buyout enti
 
 This is a pure buyout model. Credit Key issuance, activation, balance spending and the old online client are removed. Historical ledger records are retained as data, not active paid entitlement; do not silently delete them or convert an order into a buyout. Any former customer migration requires an explicit owner-issued buyout file. The wrapper does not read old online configuration automatically. Do not upgrade during a pending online generation: finish/cancel it with the old client first. No online account, remote balance or paid order is migrated by this offline import.
 
-If the three trial figures are used and no valid buyout exists, stop before app mutation and display:
+If the trial figure is used and no valid buyout exists, stop before app mutation and display:
 
 > 欢迎关注“队长的生物实验室”微信公众号/小红书。
-> 3 张免费体验已用完。39 元一次买断，绑定一台电脑不限绘图次数；同机 Illustrator/PowerPoint 共用。
+> 1 张免费体验已用完。39 元一次买断，绑定一台电脑不限绘图次数；同机 Illustrator/PowerPoint 共用。
 > 添加队长的笔记本微信（XBBen01），提供机器码购买 SVS 买断授权文件。
 > 不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。
 
