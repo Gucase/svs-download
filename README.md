@@ -40,7 +40,7 @@ SVS 根据参考图重建可编辑的图形和文字，保留布局、颜色及�
 
 例如：
 
-> 使用 scientific-vector-studio，在我已经打开的 Illustrator 中按这张参考图直接绘制可编辑矢量。不要自动图像描摹，保留可编辑图形和文字，逐项对照细节，完成后让我查看。
+> 使用 scientific-vector-studio，在我已经打开的 Illustrator 中按这张参考图直接绘制可编辑矢量。
 
 ## 实际工作流
 
