@@ -133,10 +133,6 @@ SVS 根据参考图重建可编辑的图形和文字，保留布局、颜色及�
   </tr>
 </table>
 
-### 写实 Q-TOF 仪器
-
-![SVS 在 PowerPoint 中绘制的写实 Q-TOF 可编辑矢量图效果预览](examples/scientific-asset-drawing/qtof-realistic-powerpoint.png)
-
 ### 写实 HPLC 仪器
 
 ![SVS 在 PowerPoint 中绘制的写实 HPLC 可编辑矢量图效果预览](examples/scientific-asset-drawing/hplc-realistic-powerpoint.png)
