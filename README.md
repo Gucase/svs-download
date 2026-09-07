@@ -112,6 +112,27 @@ SVS 根据参考图重建可编辑的图形和文字，保留布局、颜色及�
 
 以下示例未使用参考图重建，均由 SVS 在 PowerPoint 中直接绘制为可编辑矢量部件。
 
+### 部分科研图元库示例
+
+下列 10 个图元来自 SVS 当前科研图元库，覆盖生物学、医学、实验器皿和小型仪器。页面直接展示可编辑 SVG 文件。
+
+<table>
+  <tr>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/biology/animal-cell.svg" alt="动物细胞" width="140"><br><sub>动物细胞</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/biology/plant-cell.svg" alt="植物细胞" width="140"><br><sub>植物细胞</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/biology/mitochondrion.svg" alt="线粒体" width="140"><br><sub>线粒体</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/biology/antibody.svg" alt="抗体" width="140"><br><sub>抗体</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/medical/human-heart.svg" alt="心脏" width="140"><br><sub>心脏</sub></td>
+  </tr>
+  <tr>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/labware/test-tube.svg" alt="试管" width="140"><br><sub>试管</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/labware/graduated-cylinder.svg" alt="量筒" width="140"><br><sub>量筒</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/labware/micropipette.svg" alt="移液器" width="140"><br><sub>移液器</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/instruments/benchtop-centrifuge.svg" alt="台式离心机" width="140"><br><sub>台式离心机</sub></td>
+    <td align="center" width="20%"><img src="scientific-vector-studio/assets/scientific-library/instruments/compound-microscope.svg" alt="复式显微镜" width="140"><br><sub>复式显微镜</sub></td>
+  </tr>
+</table>
+
 ### 写实 Q-TOF 仪器
 
 ![SVS 在 PowerPoint 中绘制的写实 Q-TOF 可编辑矢量图效果预览](examples/scientific-asset-drawing/qtof-realistic-powerpoint.png)
