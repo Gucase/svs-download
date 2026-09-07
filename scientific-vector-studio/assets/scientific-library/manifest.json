@@ -1,0 +1,2499 @@
+{
+  "schema_version": "1.0",
+  "library_name": "SVS Scientific Core Library",
+  "provenance": "Independently authored generic scientific vectors; no vendor or third-party artwork.",
+  "base_view_box": [
+    0,
+    0,
+    240,
+    180
+  ],
+  "asset_count": 60,
+  "assets": [
+    {
+      "id": "arrow-straight",
+      "name_zh": "直箭头",
+      "name_en": "Straight arrow",
+      "aliases": [
+        "arrow",
+        "connector",
+        "直线箭头"
+      ],
+      "category": "arrows",
+      "file": "arrows/arrow-straight.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "arrow-straight-shaft",
+        "arrow-straight-head"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "start": [
+          25,
+          90
+        ],
+        "end": [
+          218,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "arrow-curved",
+      "name_zh": "曲线箭头",
+      "name_en": "Curved arrow",
+      "aliases": [
+        "curved arrow",
+        "弧形箭头",
+        "curve connector"
+      ],
+      "category": "arrows",
+      "file": "arrows/arrow-curved.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "arrow-curved-shaft",
+        "arrow-curved-head"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "start": [
+          28,
+          136
+        ],
+        "end": [
+          216,
+          62
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "arrow-bidirectional",
+      "name_zh": "双向箭头",
+      "name_en": "Bidirectional arrow",
+      "aliases": [
+        "double arrow",
+        "reversible",
+        "双箭头"
+      ],
+      "category": "arrows",
+      "file": "arrows/arrow-bidirectional.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "arrow-bidirectional-shaft",
+        "arrow-bidirectional-left",
+        "arrow-bidirectional-right"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "left": [
+          18,
+          90
+        ],
+        "right": [
+          222,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "connector-inhibition",
+      "name_zh": "抑制线",
+      "name_en": "Inhibition connector",
+      "aliases": [
+        "inhibition",
+        "T bar",
+        "抑制箭头"
+      ],
+      "category": "arrows",
+      "file": "arrows/connector-inhibition.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "connector-inhibition-shaft",
+        "connector-inhibition-bar"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "start": [
+          24,
+          90
+        ],
+        "end": [
+          207,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "arrow-dashed",
+      "name_zh": "虚线箭头",
+      "name_en": "Dashed arrow",
+      "aliases": [
+        "dashed connector",
+        "虚线",
+        "dotted arrow"
+      ],
+      "category": "arrows",
+      "file": "arrows/arrow-dashed.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "arrow-dashed-shaft",
+        "arrow-dashed-head"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "start": [
+          25,
+          90
+        ],
+        "end": [
+          218,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "arrow-cyclic",
+      "name_zh": "循环箭头",
+      "name_en": "Cyclic arrow",
+      "aliases": [
+        "cycle",
+        "loop arrow",
+        "回环箭头"
+      ],
+      "category": "arrows",
+      "file": "arrows/arrow-cyclic.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "arrow-cyclic-shaft",
+        "arrow-cyclic-head"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "start": [
+          71,
+          139
+        ],
+        "end": [
+          204,
+          68
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "beaker",
+      "name_zh": "烧杯",
+      "name_en": "Beaker",
+      "aliases": [
+        "beaker",
+        "玻璃烧杯",
+        "实验烧杯"
+      ],
+      "category": "labware",
+      "file": "labware/beaker.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "beaker-glass",
+        "beaker-rim",
+        "beaker-liquid",
+        "beaker-graduations"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          30
+        ],
+        "bottom": [
+          120,
+          162
+        ],
+        "left": [
+          69,
+          96
+        ],
+        "right": [
+          176,
+          96
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "erlenmeyer-flask",
+      "name_zh": "锥形瓶",
+      "name_en": "Erlenmeyer flask",
+      "aliases": [
+        "conical flask",
+        "三角瓶",
+        "Erlenmeyer"
+      ],
+      "category": "labware",
+      "file": "labware/erlenmeyer-flask.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "flask-body",
+        "flask-neck",
+        "flask-liquid",
+        "flask-rim"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          20
+        ],
+        "bottom": [
+          120,
+          160
+        ],
+        "left": [
+          45,
+          130
+        ],
+        "right": [
+          195,
+          130
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "test-tube",
+      "name_zh": "试管",
+      "name_en": "Test tube",
+      "aliases": [
+        "test tube",
+        "试管",
+        "culture tube"
+      ],
+      "category": "labware",
+      "file": "labware/test-tube.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "test-tube-body",
+        "test-tube-liquid",
+        "test-tube-rim"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          20
+        ],
+        "bottom": [
+          120,
+          164
+        ],
+        "left": [
+          87,
+          90
+        ],
+        "right": [
+          153,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "conical-tube",
+      "name_zh": "锥形离心管",
+      "name_en": "Conical centrifuge tube",
+      "aliases": [
+        "Falcon tube",
+        "centrifuge tube",
+        "离心管"
+      ],
+      "category": "labware",
+      "file": "labware/conical-tube.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "conical-cap",
+        "conical-body",
+        "conical-liquid",
+        "conical-graduations"
+      ],
+      "parameters": [
+        "cap_color",
+        "glass_color",
+        "liquid_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          16
+        ],
+        "bottom": [
+          120,
+          166
+        ],
+        "left": [
+          78,
+          82
+        ],
+        "right": [
+          162,
+          82
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "petri-dish",
+      "name_zh": "培养皿",
+      "name_en": "Petri dish",
+      "aliases": [
+        "Petri",
+        "culture dish",
+        "平皿"
+      ],
+      "category": "labware",
+      "file": "labware/petri-dish.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "petri-lid",
+        "petri-base",
+        "petri-agar",
+        "petri-colonies"
+      ],
+      "parameters": [
+        "glass_color",
+        "agar_color",
+        "colony_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          48
+        ],
+        "bottom": [
+          120,
+          132
+        ],
+        "left": [
+          36,
+          92
+        ],
+        "right": [
+          204,
+          92
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "micropipette",
+      "name_zh": "移液器",
+      "name_en": "Micropipette",
+      "aliases": [
+        "pipette",
+        "移液枪",
+        "single channel pipette"
+      ],
+      "category": "labware",
+      "file": "labware/micropipette.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "pipette-plunger",
+        "pipette-body",
+        "pipette-display",
+        "pipette-shaft",
+        "pipette-tip"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "tip_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          7
+        ],
+        "bottom": [
+          120,
+          174
+        ],
+        "grip": [
+          120,
+          65
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "compound-microscope",
+      "name_zh": "复式显微镜",
+      "name_en": "Compound microscope",
+      "aliases": [
+        "microscope",
+        "显微镜",
+        "light microscope"
+      ],
+      "category": "instruments",
+      "file": "instruments/compound-microscope.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "microscope-base",
+        "microscope-arm",
+        "microscope-stage",
+        "microscope-eyepiece",
+        "microscope-objectives",
+        "microscope-focus"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          84,
+          16
+        ],
+        "bottom": [
+          120,
+          164
+        ],
+        "sample": [
+          113,
+          106
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "benchtop-centrifuge",
+      "name_zh": "台式离心机",
+      "name_en": "Benchtop centrifuge",
+      "aliases": [
+        "centrifuge",
+        "microcentrifuge",
+        "离心机"
+      ],
+      "category": "instruments",
+      "file": "instruments/benchtop-centrifuge.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "centrifuge-body",
+        "centrifuge-lid",
+        "centrifuge-rotor",
+        "centrifuge-display",
+        "centrifuge-controls"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          9
+        ],
+        "bottom": [
+          120,
+          163
+        ],
+        "front": [
+          120,
+          145
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "pcr-thermocycler",
+      "name_zh": "PCR扩增仪",
+      "name_en": "PCR thermocycler",
+      "aliases": [
+        "PCR machine",
+        "thermal cycler",
+        "PCR仪"
+      ],
+      "category": "instruments",
+      "file": "instruments/pcr-thermocycler.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "pcr-body",
+        "pcr-lid",
+        "pcr-hinge",
+        "pcr-block",
+        "pcr-display",
+        "pcr-controls"
+      ],
+      "parameters": [
+        "body_color",
+        "lid_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          10
+        ],
+        "bottom": [
+          120,
+          162
+        ],
+        "sample": [
+          120,
+          89
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "volumetric-flask",
+      "name_zh": "容量瓶",
+      "name_en": "Volumetric flask",
+      "aliases": [
+        "volumetric flask",
+        "measuring flask",
+        "容量瓶"
+      ],
+      "category": "labware",
+      "file": "labware/volumetric-flask.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "volumetric-body",
+        "volumetric-neck",
+        "volumetric-mark",
+        "volumetric-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          16
+        ],
+        "bottom": [
+          120,
+          165
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "round-bottom-flask",
+      "name_zh": "圆底烧瓶",
+      "name_en": "Round-bottom flask",
+      "aliases": [
+        "boiling flask",
+        "round flask",
+        "圆底瓶"
+      ],
+      "category": "labware",
+      "file": "labware/round-bottom-flask.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "round-flask-body",
+        "round-flask-neck",
+        "round-flask-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          17
+        ],
+        "bottom": [
+          120,
+          164
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "graduated-cylinder",
+      "name_zh": "量筒",
+      "name_en": "Graduated cylinder",
+      "aliases": [
+        "measuring cylinder",
+        "graduated cylinder",
+        "量筒"
+      ],
+      "category": "labware",
+      "file": "labware/graduated-cylinder.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "cylinder-body",
+        "cylinder-base",
+        "cylinder-liquid",
+        "cylinder-graduations"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          15
+        ],
+        "bottom": [
+          120,
+          165
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "reagent-bottle",
+      "name_zh": "试剂瓶",
+      "name_en": "Reagent bottle",
+      "aliases": [
+        "media bottle",
+        "laboratory bottle",
+        "试剂瓶"
+      ],
+      "category": "labware",
+      "file": "labware/reagent-bottle.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "reagent-cap",
+        "reagent-body",
+        "reagent-label",
+        "reagent-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          14
+        ],
+        "bottom": [
+          120,
+          165
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "microcentrifuge-tube",
+      "name_zh": "微量离心管",
+      "name_en": "Microcentrifuge tube",
+      "aliases": [
+        "Eppendorf tube",
+        "microtube",
+        "EP管"
+      ],
+      "category": "labware",
+      "file": "labware/microcentrifuge-tube.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "microtube-body",
+        "microtube-cap",
+        "microtube-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          116,
+          18
+        ],
+        "bottom": [
+          120,
+          166
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "cryovial",
+      "name_zh": "冻存管",
+      "name_en": "Cryovial",
+      "aliases": [
+        "cryogenic vial",
+        "freezing tube",
+        "冻存管"
+      ],
+      "category": "labware",
+      "file": "labware/cryovial.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "cryovial-cap",
+        "cryovial-body",
+        "cryovial-label",
+        "cryovial-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          12
+        ],
+        "bottom": [
+          120,
+          165
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "sample-vial",
+      "name_zh": "样品瓶",
+      "name_en": "Sample vial",
+      "aliases": [
+        "HPLC vial",
+        "autosampler vial",
+        "进样瓶"
+      ],
+      "category": "labware",
+      "file": "labware/sample-vial.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "vial-cap",
+        "vial-body",
+        "vial-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          21
+        ],
+        "bottom": [
+          120,
+          160
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "cuvette",
+      "name_zh": "比色皿",
+      "name_en": "Cuvette",
+      "aliases": [
+        "spectrophotometer cuvette",
+        "cuvette",
+        "比色皿"
+      ],
+      "category": "labware",
+      "file": "labware/cuvette.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "cuvette-body",
+        "cuvette-window",
+        "cuvette-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          20
+        ],
+        "bottom": [
+          120,
+          160
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "well-plate-96",
+      "name_zh": "96孔板",
+      "name_en": "96-well plate",
+      "aliases": [
+        "microplate",
+        "96 well plate",
+        "酶标板"
+      ],
+      "category": "labware",
+      "file": "labware/well-plate-96.svg",
+      "views": [
+        "perspective"
+      ],
+      "editable_parts": [
+        "well-plate-body",
+        "well-plate-wells"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          38
+        ],
+        "bottom": [
+          120,
+          143
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "cell-culture-flask",
+      "name_zh": "细胞培养瓶",
+      "name_en": "Cell culture flask",
+      "aliases": [
+        "T flask",
+        "tissue culture flask",
+        "培养瓶"
+      ],
+      "category": "labware",
+      "file": "labware/cell-culture-flask.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "culture-flask-body",
+        "culture-flask-neck",
+        "culture-flask-cap",
+        "culture-flask-medium"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "left": [
+          31,
+          105
+        ],
+        "right": [
+          210,
+          105
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "serological-pipette",
+      "name_zh": "血清移液管",
+      "name_en": "Serological pipette",
+      "aliases": [
+        "graduated pipette",
+        "serological pipette",
+        "刻度移液管"
+      ],
+      "category": "labware",
+      "file": "labware/serological-pipette.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "serological-body",
+        "serological-graduations",
+        "serological-tip"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "left": [
+          18,
+          90
+        ],
+        "right": [
+          221,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "syringe",
+      "name_zh": "注射器",
+      "name_en": "Syringe",
+      "aliases": [
+        "syringe",
+        "injection",
+        "注射器"
+      ],
+      "category": "labware",
+      "file": "labware/syringe.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "syringe-barrel",
+        "syringe-plunger",
+        "syringe-needle",
+        "syringe-graduations"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "left": [
+          18,
+          90
+        ],
+        "right": [
+          224,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "dropper-bottle",
+      "name_zh": "滴瓶",
+      "name_en": "Dropper bottle",
+      "aliases": [
+        "dropper",
+        "dropping bottle",
+        "滴瓶"
+      ],
+      "category": "labware",
+      "file": "labware/dropper-bottle.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "dropper-bulb",
+        "dropper-cap",
+        "dropper-body",
+        "dropper-liquid"
+      ],
+      "parameters": [
+        "glass_color",
+        "liquid_color",
+        "liquid_opacity",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          10
+        ],
+        "bottom": [
+          120,
+          165
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "pipette-tip-rack",
+      "name_zh": "吸头盒",
+      "name_en": "Pipette tip rack",
+      "aliases": [
+        "tip box",
+        "pipette tips",
+        "吸头盒"
+      ],
+      "category": "labware",
+      "file": "labware/pipette-tip-rack.svg",
+      "views": [
+        "perspective"
+      ],
+      "editable_parts": [
+        "tip-rack-base",
+        "tip-rack-lid",
+        "pipette-tips"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          32
+        ],
+        "bottom": [
+          120,
+          153
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "biosafety-cabinet",
+      "name_zh": "生物安全柜",
+      "name_en": "Biosafety cabinet",
+      "aliases": [
+        "BSC",
+        "laminar flow cabinet",
+        "生物安全柜"
+      ],
+      "category": "instruments",
+      "file": "instruments/biosafety-cabinet.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "bsc-body",
+        "bsc-sash",
+        "bsc-worktop",
+        "bsc-grille"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          10
+        ],
+        "bottom": [
+          120,
+          169
+        ],
+        "workspace": [
+          120,
+          100
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "co2-incubator",
+      "name_zh": "二氧化碳培养箱",
+      "name_en": "CO2 incubator",
+      "aliases": [
+        "cell incubator",
+        "CO2 incubator",
+        "培养箱"
+      ],
+      "category": "instruments",
+      "file": "instruments/co2-incubator.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "incubator-body",
+        "incubator-door",
+        "incubator-shelves",
+        "incubator-display"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          12
+        ],
+        "bottom": [
+          120,
+          168
+        ],
+        "door": [
+          120,
+          101
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "autoclave",
+      "name_zh": "高压灭菌器",
+      "name_en": "Autoclave",
+      "aliases": [
+        "steam sterilizer",
+        "autoclave",
+        "高压灭菌锅"
+      ],
+      "category": "instruments",
+      "file": "instruments/autoclave.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "autoclave-body",
+        "autoclave-door",
+        "autoclave-lock",
+        "autoclave-display"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          10
+        ],
+        "bottom": [
+          120,
+          169
+        ],
+        "door": [
+          120,
+          94
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "spectrophotometer",
+      "name_zh": "分光光度计",
+      "name_en": "Spectrophotometer",
+      "aliases": [
+        "spectrometer",
+        "UV Vis",
+        "分光光度计"
+      ],
+      "category": "instruments",
+      "file": "instruments/spectrophotometer.svg",
+      "views": [
+        "perspective"
+      ],
+      "editable_parts": [
+        "spectro-body",
+        "spectro-lid",
+        "spectro-cuvette-slot",
+        "spectro-display",
+        "spectro-controls"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          32
+        ],
+        "bottom": [
+          120,
+          156
+        ],
+        "sample": [
+          78,
+          75
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "microplate-reader",
+      "name_zh": "酶标仪",
+      "name_en": "Microplate reader",
+      "aliases": [
+        "plate reader",
+        "ELISA reader",
+        "酶标仪"
+      ],
+      "category": "instruments",
+      "file": "instruments/microplate-reader.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "reader-body",
+        "reader-tray",
+        "reader-display",
+        "reader-controls"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          29
+        ],
+        "bottom": [
+          120,
+          158
+        ],
+        "tray": [
+          120,
+          99
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "gel-electrophoresis-unit",
+      "name_zh": "凝胶电泳槽",
+      "name_en": "Gel electrophoresis unit",
+      "aliases": [
+        "gel box",
+        "electrophoresis tank",
+        "电泳槽"
+      ],
+      "category": "instruments",
+      "file": "instruments/gel-electrophoresis-unit.svg",
+      "views": [
+        "perspective"
+      ],
+      "editable_parts": [
+        "gel-tank",
+        "gel-lid",
+        "gel-tray",
+        "gel-wells",
+        "gel-electrodes"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "left": [
+          31,
+          90
+        ],
+        "right": [
+          209,
+          90
+        ],
+        "sample": [
+          120,
+          83
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "electrophoresis-power-supply",
+      "name_zh": "电泳电源",
+      "name_en": "Electrophoresis power supply",
+      "aliases": [
+        "power supply",
+        "electrophoresis supply",
+        "电泳电源"
+      ],
+      "category": "instruments",
+      "file": "instruments/electrophoresis-power-supply.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "power-body",
+        "power-display",
+        "power-controls",
+        "power-terminals"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "left": [
+          40,
+          94
+        ],
+        "right": [
+          200,
+          94
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "blot-transfer-tank",
+      "name_zh": "转膜槽",
+      "name_en": "Blot transfer tank",
+      "aliases": [
+        "western blot transfer",
+        "transfer tank",
+        "转膜槽"
+      ],
+      "category": "instruments",
+      "file": "instruments/blot-transfer-tank.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "transfer-tank",
+        "transfer-lid",
+        "transfer-cassette",
+        "transfer-electrodes"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          25
+        ],
+        "bottom": [
+          120,
+          157
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "orbital-shaker",
+      "name_zh": "摇床",
+      "name_en": "Orbital shaker",
+      "aliases": [
+        "lab shaker",
+        "orbital shaker",
+        "振荡器"
+      ],
+      "category": "instruments",
+      "file": "instruments/orbital-shaker.svg",
+      "views": [
+        "perspective"
+      ],
+      "editable_parts": [
+        "shaker-body",
+        "shaker-platform",
+        "shaker-clamps",
+        "shaker-display"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          33
+        ],
+        "bottom": [
+          120,
+          158
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "water-bath",
+      "name_zh": "恒温水浴锅",
+      "name_en": "Laboratory water bath",
+      "aliases": [
+        "water bath",
+        "heated bath",
+        "水浴锅"
+      ],
+      "category": "instruments",
+      "file": "instruments/water-bath.svg",
+      "views": [
+        "perspective"
+      ],
+      "editable_parts": [
+        "bath-body",
+        "bath-lid",
+        "bath-water",
+        "bath-rack",
+        "bath-display"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          36
+        ],
+        "bottom": [
+          120,
+          157
+        ],
+        "sample": [
+          120,
+          76
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "laboratory-freezer",
+      "name_zh": "实验室低温冰箱",
+      "name_en": "Laboratory freezer",
+      "aliases": [
+        "ultra low freezer",
+        "lab freezer",
+        "低温冰箱"
+      ],
+      "category": "instruments",
+      "file": "instruments/laboratory-freezer.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "freezer-body",
+        "freezer-door",
+        "freezer-handle",
+        "freezer-display"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          9
+        ],
+        "bottom": [
+          120,
+          170
+        ],
+        "door": [
+          120,
+          101
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "analytical-balance",
+      "name_zh": "分析天平",
+      "name_en": "Analytical balance",
+      "aliases": [
+        "laboratory balance",
+        "precision scale",
+        "分析天平"
+      ],
+      "category": "instruments",
+      "file": "instruments/analytical-balance.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "balance-base",
+        "balance-draft-shield",
+        "balance-pan",
+        "balance-display",
+        "balance-controls"
+      ],
+      "parameters": [
+        "body_color",
+        "accent_color",
+        "display_color",
+        "uniform_scale"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          21
+        ],
+        "bottom": [
+          120,
+          159
+        ],
+        "sample": [
+          120,
+          94
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "animal-cell",
+      "name_zh": "动物细胞",
+      "name_en": "Animal cell",
+      "aliases": [
+        "eukaryotic cell",
+        "mammalian cell",
+        "动物细胞"
+      ],
+      "category": "biology",
+      "file": "biology/animal-cell.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "animal-cell-membrane",
+        "animal-cell-nucleus",
+        "animal-cell-mitochondria",
+        "animal-cell-er"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          91
+        ],
+        "membrane": [
+          205,
+          91
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "bacterial-cell",
+      "name_zh": "细菌",
+      "name_en": "Bacterial cell",
+      "aliases": [
+        "bacterium",
+        "prokaryote",
+        "细菌"
+      ],
+      "category": "biology",
+      "file": "biology/bacterial-cell.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "bacteria-envelope",
+        "bacteria-nucleoid",
+        "bacteria-ribosomes",
+        "bacteria-flagellum"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "left": [
+          36,
+          90
+        ],
+        "right": [
+          185,
+          90
+        ],
+        "flagellum": [
+          220,
+          103
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "plant-cell",
+      "name_zh": "植物细胞",
+      "name_en": "Plant cell",
+      "aliases": [
+        "plant cell",
+        "植物细胞",
+        "cell wall"
+      ],
+      "category": "biology",
+      "file": "biology/plant-cell.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "plant-cell-wall",
+        "plant-cell-membrane",
+        "plant-cell-vacuole",
+        "plant-cell-nucleus",
+        "plant-cell-chloroplasts"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          90
+        ],
+        "wall": [
+          206,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "cell-nucleus",
+      "name_zh": "细胞核",
+      "name_en": "Cell nucleus",
+      "aliases": [
+        "nucleus",
+        "nuclear envelope",
+        "细胞核"
+      ],
+      "category": "biology",
+      "file": "biology/cell-nucleus.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "nucleus-envelope",
+        "nucleus-nucleolus",
+        "nucleus-chromatin",
+        "nucleus-pores"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          90
+        ],
+        "envelope": [
+          198,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "mitochondrion",
+      "name_zh": "线粒体",
+      "name_en": "Mitochondrion",
+      "aliases": [
+        "mitochondria",
+        "mitochondrion",
+        "线粒体"
+      ],
+      "category": "biology",
+      "file": "biology/mitochondrion.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "mitochondria-outer",
+        "mitochondria-inner",
+        "mitochondria-cristae"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "left": [
+          27,
+          90
+        ],
+        "right": [
+          213,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "dna-double-helix",
+      "name_zh": "DNA双螺旋",
+      "name_en": "DNA double helix",
+      "aliases": [
+        "DNA",
+        "double helix",
+        "脱氧核糖核酸"
+      ],
+      "category": "biology",
+      "file": "biology/dna-double-helix.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "dna-strand-a",
+        "dna-strand-b",
+        "dna-base-pairs"
+      ],
+      "parameters": [
+        "strand_color_a",
+        "strand_color_b",
+        "base_pair_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "left": [
+          25,
+          90
+        ],
+        "right": [
+          215,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "rna-strand",
+      "name_zh": "RNA链",
+      "name_en": "RNA strand",
+      "aliases": [
+        "RNA",
+        "single stranded RNA",
+        "核糖核酸"
+      ],
+      "category": "biology",
+      "file": "biology/rna-strand.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "rna-backbone",
+        "rna-bases"
+      ],
+      "parameters": [
+        "strand_color",
+        "base_colors",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "left": [
+          22,
+          98
+        ],
+        "right": [
+          218,
+          82
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "protein-enzyme",
+      "name_zh": "蛋白质/酶",
+      "name_en": "Protein enzyme",
+      "aliases": [
+        "enzyme",
+        "globular protein",
+        "蛋白质"
+      ],
+      "category": "biology",
+      "file": "biology/protein-enzyme.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "protein-surface",
+        "protein-active-site",
+        "protein-ribbon"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          91
+        ],
+        "active_site": [
+          173,
+          77
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "antibody",
+      "name_zh": "抗体",
+      "name_en": "Antibody",
+      "aliases": [
+        "immunoglobulin",
+        "IgG",
+        "抗体"
+      ],
+      "category": "biology",
+      "file": "biology/antibody.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "antibody-heavy-chains",
+        "antibody-light-chains",
+        "antibody-binding-sites"
+      ],
+      "parameters": [
+        "heavy_chain_color",
+        "light_chain_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "left_site": [
+          60,
+          25
+        ],
+        "right_site": [
+          180,
+          25
+        ],
+        "fc": [
+          120,
+          164
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "enveloped-virus",
+      "name_zh": "包膜病毒",
+      "name_en": "Enveloped virus",
+      "aliases": [
+        "virus",
+        "virion",
+        "包膜病毒"
+      ],
+      "category": "biology",
+      "file": "biology/enveloped-virus.svg",
+      "views": [
+        "front"
+      ],
+      "editable_parts": [
+        "virus-envelope",
+        "virus-spikes",
+        "virus-capsid",
+        "virus-genome"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          90
+        ],
+        "surface": [
+          198,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "lipid-bilayer",
+      "name_zh": "脂质双层",
+      "name_en": "Lipid bilayer",
+      "aliases": [
+        "cell membrane",
+        "phospholipid bilayer",
+        "脂质双层"
+      ],
+      "category": "biology",
+      "file": "biology/lipid-bilayer.svg",
+      "views": [
+        "side"
+      ],
+      "editable_parts": [
+        "bilayer-upper-heads",
+        "bilayer-lower-heads",
+        "bilayer-tails"
+      ],
+      "parameters": [
+        "head_color",
+        "tail_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "left": [
+          20,
+          90
+        ],
+        "right": [
+          220,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "human-heart",
+      "name_zh": "心脏",
+      "name_en": "Human heart",
+      "aliases": [
+        "heart",
+        "cardiac",
+        "心脏"
+      ],
+      "category": "medical",
+      "file": "medical/human-heart.svg",
+      "views": [
+        "anterior"
+      ],
+      "editable_parts": [
+        "heart-body",
+        "heart-aorta",
+        "heart-pulmonary-vessels",
+        "heart-coronary-vessels"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "top": [
+          128,
+          18
+        ],
+        "bottom": [
+          112,
+          165
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "human-lungs",
+      "name_zh": "肺",
+      "name_en": "Human lungs",
+      "aliases": [
+        "lungs",
+        "respiratory",
+        "肺"
+      ],
+      "category": "medical",
+      "file": "medical/human-lungs.svg",
+      "views": [
+        "anterior"
+      ],
+      "editable_parts": [
+        "lungs-left",
+        "lungs-right",
+        "lungs-trachea",
+        "lungs-bronchi"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          13
+        ],
+        "bottom": [
+          120,
+          163
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "human-liver",
+      "name_zh": "肝脏",
+      "name_en": "Human liver",
+      "aliases": [
+        "liver",
+        "hepatic",
+        "肝脏"
+      ],
+      "category": "medical",
+      "file": "medical/human-liver.svg",
+      "views": [
+        "anterior"
+      ],
+      "editable_parts": [
+        "liver-body",
+        "liver-lobes",
+        "liver-gallbladder",
+        "liver-vessels"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          93
+        ],
+        "hilum": [
+          127,
+          113
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "human-kidney",
+      "name_zh": "肾脏",
+      "name_en": "Human kidney",
+      "aliases": [
+        "kidney",
+        "renal",
+        "肾脏"
+      ],
+      "category": "medical",
+      "file": "medical/human-kidney.svg",
+      "views": [
+        "section"
+      ],
+      "editable_parts": [
+        "kidney-cortex",
+        "kidney-medulla",
+        "kidney-pelvis",
+        "kidney-ureter",
+        "kidney-vessels"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "hilum": [
+          142,
+          91
+        ],
+        "ureter": [
+          158,
+          165
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "human-brain",
+      "name_zh": "大脑",
+      "name_en": "Human brain",
+      "aliases": [
+        "brain",
+        "cerebral",
+        "大脑"
+      ],
+      "category": "medical",
+      "file": "medical/human-brain.svg",
+      "views": [
+        "lateral"
+      ],
+      "editable_parts": [
+        "brain-cerebrum",
+        "brain-sulci",
+        "brain-cerebellum",
+        "brain-stem"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          84
+        ],
+        "stem": [
+          139,
+          162
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "human-stomach",
+      "name_zh": "胃",
+      "name_en": "Human stomach",
+      "aliases": [
+        "stomach",
+        "gastric",
+        "胃"
+      ],
+      "category": "medical",
+      "file": "medical/human-stomach.svg",
+      "views": [
+        "anterior"
+      ],
+      "editable_parts": [
+        "stomach-body",
+        "stomach-esophagus",
+        "stomach-duodenum",
+        "stomach-folds"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "top": [
+          130,
+          15
+        ],
+        "outlet": [
+          181,
+          145
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "blood-vessel-section",
+      "name_zh": "血管剖面",
+      "name_en": "Blood vessel section",
+      "aliases": [
+        "artery",
+        "blood vessel",
+        "血管"
+      ],
+      "category": "medical",
+      "file": "medical/blood-vessel-section.svg",
+      "views": [
+        "cross-section"
+      ],
+      "editable_parts": [
+        "vessel-adventitia",
+        "vessel-media",
+        "vessel-intima",
+        "vessel-lumen",
+        "blood-cells"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "center": [
+          120,
+          90
+        ],
+        "lumen": [
+          120,
+          90
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    },
+    {
+      "id": "skin-layers",
+      "name_zh": "皮肤分层",
+      "name_en": "Skin layers",
+      "aliases": [
+        "skin tissue",
+        "epidermis dermis",
+        "皮肤"
+      ],
+      "category": "medical",
+      "file": "medical/skin-layers.svg",
+      "views": [
+        "section"
+      ],
+      "editable_parts": [
+        "skin-epidermis",
+        "skin-dermis",
+        "skin-hypodermis",
+        "skin-hair-follicle",
+        "skin-vessel"
+      ],
+      "parameters": [
+        "fill_colors",
+        "stroke_color",
+        "uniform_scale",
+        "rotation"
+      ],
+      "connection_anchors": {
+        "top": [
+          120,
+          27
+        ],
+        "bottom": [
+          120,
+          164
+        ]
+      },
+      "illustrator_verified": false,
+      "powerpoint_verified": false,
+      "review_status": "candidate"
+    }
+  ]
+}

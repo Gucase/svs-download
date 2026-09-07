@@ -17,6 +17,8 @@ param(
     [string]$OutputPptx,
     [string]$PythonExecutable,
     [string]$UsageId,
+    [ValidateSet('reference_reconstruction', 'scientific_asset_drawing')]
+    [string]$FeatureMode = 'reference_reconstruction',
     [string]$LicenseStatePath,
     [string]$LicenseConfigPath,
     [switch]$RequireEditableGeometry,
@@ -68,7 +70,7 @@ if ($null -eq $visiblePowerPoint) {
     throw 'POWERPOINT_NOT_RUNNING|Open PowerPoint and the target presentation yourself.'
 }
 
-$usage = Start-SvsUsage -Python $python -InputSvg $inputPath -UsageId $UsageId -LicenseStatePath $LicenseStatePath -LicenseConfigPath $LicenseConfigPath
+$usage = Start-SvsUsage -Python $python -InputSvg $inputPath -UsageId $UsageId -FeatureMode $FeatureMode -LicenseStatePath $LicenseStatePath -LicenseConfigPath $LicenseConfigPath
 
 function Convert-HexToOfficeRgb([string]$value) {
     $known = @{

@@ -2,6 +2,8 @@
 param(
     [Parameter(Mandatory = $true)][ValidateSet('Reserve', 'Commit', 'Cancel')][string]$Action,
     [Parameter(Mandatory = $true)][string]$UsageId,
+    [ValidateSet('reference_reconstruction', 'scientific_asset_drawing')]
+    [string]$FeatureMode = 'reference_reconstruction',
     [string]$InputSvg,
     [string]$PythonExecutable,
     [string]$LicenseStatePath,
@@ -11,7 +13,7 @@ $ErrorActionPreference = 'Stop'
 . (Join-Path $PSScriptRoot 'license_gate.ps1')
 if ([string]::IsNullOrWhiteSpace($UsageId)) { throw 'A stable generation UsageId is required.' }
 $runtime = Resolve-SvsPython -PythonExecutable $PythonExecutable
-$parameters = @{ Python = $runtime; UsageId = $UsageId; LicenseStatePath = $LicenseStatePath; LicenseConfigPath = $LicenseConfigPath }
+$parameters = @{ Python = $runtime; UsageId = $UsageId; FeatureMode = $FeatureMode; LicenseStatePath = $LicenseStatePath; LicenseConfigPath = $LicenseConfigPath }
 if ($Action -eq 'Reserve') {
     if ([string]::IsNullOrWhiteSpace($InputSvg)) { throw 'Reserve requires InputSvg.' }
     $resolvedSvg = (Resolve-Path -LiteralPath $InputSvg).Path

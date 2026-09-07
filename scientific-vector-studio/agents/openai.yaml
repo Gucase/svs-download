@@ -1,5 +1,5 @@
 interface:
   display_name: "Scientific Vector Studio"
-  short_description: "Direct scientific vectors, native gradients and live text"
+  short_description: "Reconstruct references or compose editable scientific vectors"
   brand_color: "#246B78"
-  default_prompt: "Use $scientific-vector-studio to directly redraw my reference as editable vectors in Illustrator, compare details, and show it for review without automatic tracing."
+  default_prompt: "Use $scientific-vector-studio to reconstruct my reference or compose a scientific diagram from editable vector assets in Illustrator or PowerPoint."

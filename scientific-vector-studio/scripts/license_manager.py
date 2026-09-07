@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One-figure trial and signed, unlimited buyout-file verifier.
+"""Mode-specific trials and signed, unlimited buyout-file verifier.
 
 The public skill contains only an Ed25519 public key. The private signing key
 belongs in the separate owner-only admin tool and must never be distributed.
@@ -25,13 +25,21 @@ from typing import Any, Iterator
 
 PRODUCT = "scientific-vector-studio"
 STATE_VERSION = 1
-FREE_FIGURES = 1
+REFERENCE_RECONSTRUCTION = "reference_reconstruction"
+SCIENTIFIC_ASSET_DRAWING = "scientific_asset_drawing"
+DEFAULT_USAGE_MODE = REFERENCE_RECONSTRUCTION
+TRIAL_LIMITS = {
+    REFERENCE_RECONSTRUCTION: 1,
+    SCIENTIFIC_ASSET_DRAWING: 2,
+}
+# Backward-compatible name for integrations that still inspect this constant.
+FREE_FIGURES = TRIAL_LIMITS[REFERENCE_RECONSTRUCTION]
 CONTACT_WECHAT = "XBBen01"
-PURCHASE_MESSAGE = (
+PURCHASE_MESSAGE_SUFFIX = (
     "欢迎关注“队长的生物实验室”微信公众号/小红书。\n"
-    "1 张免费体验已用完。39 元一次买断，绑定一台电脑不限绘图次数；同机 Illustrator/PowerPoint 共用。\n"
+    "39 元一次买断，绑定一台电脑；参考图重建与科研图元绘制均不限次数，同机 Illustrator/PowerPoint 共用。\n"
     f"如需购买，可联系微信 {CONTACT_WECHAT} 获取与本机绑定的 .svslicense 授权文件。\n"
-    "不限次仅指 SVS 授权，不包含 Codex/API、Illustrator 等第三方费用或使用额度。"
+    "不限次仅指 SVS 授权，不包含 Codex 第三方使用额度。"
 )
 MACHINE_CODE_RE = re.compile(r"^SVS-MACHINE-1\.[0-9a-f]{64}$")
 
@@ -101,6 +109,7 @@ def _empty_state() -> dict[str, Any]:
     return {
         "version": STATE_VERSION,
         "free_figure_limit": FREE_FIGURES,
+        "trial_limits": dict(TRIAL_LIMITS),
         "licenses": {},
         "reservations": {},
         "completed": {},
@@ -116,6 +125,8 @@ def _read_state(path: Path) -> dict[str, Any]:
     for key in ("licenses", "reservations", "completed"):
         if not isinstance(state.get(key), dict):
             raise RuntimeError("LICENSE_STATE_INVALID")
+    state.setdefault("free_figure_limit", FREE_FIGURES)
+    state.setdefault("trial_limits", dict(TRIAL_LIMITS))
     return state
 
 
@@ -248,8 +259,25 @@ def command_import_license(args: argparse.Namespace) -> None:
            "reused": bool(existing), "message": "买断授权已激活，SVS 不限绘图次数。"})
 
 
-def _free_used(state: dict[str, Any]) -> int:
-    return sum(1 for item in state["completed"].values() if item.get("source") == "free")
+def _usage_mode(item: dict[str, Any]) -> str:
+    # Records created before mode-specific trials belong to the original
+    # reference-reconstruction allowance.
+    return item.get("mode", DEFAULT_USAGE_MODE)
+
+
+def _trial_used(state: dict[str, Any], mode: str) -> int:
+    return sum(1 for item in state["completed"].values()
+               if item.get("source") == "free" and _usage_mode(item) == mode)
+
+
+def _trial_reserved(state: dict[str, Any], mode: str) -> int:
+    return sum(1 for item in state["reservations"].values()
+               if item.get("source") == "free" and _usage_mode(item) == mode)
+
+
+def _purchase_message(mode: str) -> str:
+    label = "参考图重建" if mode == REFERENCE_RECONSTRUCTION else "科研图元绘制"
+    return f"{label}的 {TRIAL_LIMITS[mode]} 张免费体验已用完。\n" + PURCHASE_MESSAGE_SUFFIX
 
 
 def _emit(payload: dict[str, Any], exit_code: int = 0) -> None:
@@ -263,35 +291,41 @@ def command_reserve(args: argparse.Namespace) -> None:
     if not usage_id:
         raise RuntimeError("USAGE_ID_REQUIRED")
     artifact_hash = args.artifact_sha256.lower().strip()
+    mode = args.mode
     with _locked_state(state_path) as state:
         lifetime = _lifetime_license(state, Path(args.public_key).expanduser().resolve())
         if usage_id in state["completed"]:
+            if _usage_mode(state["completed"][usage_id]) != mode:
+                raise RuntimeError("USAGE_MODE_MISMATCH")
             _emit({"ok": True, "reused": True, "usage_id": usage_id, "cost": 0})
         if usage_id in state["reservations"]:
             reservation = state["reservations"][usage_id]
+            if _usage_mode(reservation) != mode:
+                raise RuntimeError("USAGE_MODE_MISMATCH")
             if lifetime:
                 reservation.update(source="lifetime", license_id=lifetime, cost=0)
                 _write_state(state_path, state)
             elif reservation.get("source") != "free" or reservation.get("cost", 0) != 0:
                 raise RuntimeError("BUYOUT_FILE_REQUIRED_FOR_OLD_RESERVATION")
             _emit({"ok": True, "reused": False, "usage_id": usage_id, **reservation})
-        pending_free = sum(1 for item in state["reservations"].values() if item.get("source") == "free")
+        pending_free = _trial_reserved(state, mode)
         if lifetime:
             reservation = {"source": "lifetime", "license_id": lifetime, "cost": 0,
-                           "artifact_sha256": artifact_hash, "reserved_at": int(time.time())}
-        elif _free_used(state) + pending_free < FREE_FIGURES:
+                           "mode": mode, "artifact_sha256": artifact_hash, "reserved_at": int(time.time())}
+        elif _trial_used(state, mode) + pending_free < TRIAL_LIMITS[mode]:
             reservation = {
                 "source": "free",
                 "cost": 0,
+                "mode": mode,
                 "artifact_sha256": artifact_hash,
                 "reserved_at": int(time.time()),
             }
         else:
-            if _free_used(state) < FREE_FIGURES and pending_free:
+            if _trial_used(state, mode) < TRIAL_LIMITS[mode] and pending_free:
                 _emit({"ok": False, "error": "FREE_FIGURES_RESERVED",
                        "message": "免费名额已被进行中的绘图占用，请先完成或取消这些绘图。"}, exit_code=2)
-            _emit({"ok": False, "purchase_required": True, "message": PURCHASE_MESSAGE,
-                   "free_remaining": 0, "buyout_price_cny": 39}, exit_code=4)
+            _emit({"ok": False, "purchase_required": True, "message": _purchase_message(mode),
+                   "mode": mode, "free_remaining": 0, "buyout_price_cny": 39}, exit_code=4)
         state["reservations"][usage_id] = reservation
         _write_state(state_path, state)
     _emit({"ok": True, "reused": False, "usage_id": usage_id, **reservation})
@@ -334,6 +368,13 @@ def command_status(args: argparse.Namespace) -> None:
             if license_id == lifetime:
                 licenses.append({"license_id": license_id, "license_type": "lifetime", "unlimited": True, "machine_bound": True})
                 continue
+        trial_used = {mode: _trial_used(state, mode) for mode in TRIAL_LIMITS}
+        trial_reserved = {mode: _trial_reserved(state, mode) for mode in TRIAL_LIMITS}
+        trial_remaining = {mode: max(0, TRIAL_LIMITS[mode] - trial_used[mode]) for mode in TRIAL_LIMITS}
+        trial_available = {
+            mode: max(0, TRIAL_LIMITS[mode] - trial_used[mode] - trial_reserved[mode])
+            for mode in TRIAL_LIMITS
+        }
         payload = {
             "ok": True,
             "license_type": "lifetime" if lifetime else "trial",
@@ -342,14 +383,19 @@ def command_status(args: argparse.Namespace) -> None:
             "unbound_license_needs_reissue": any(
                 entry.get("signed_license", {}).get("payload", {}).get("version") == 2
                 for entry in state["licenses"].values()),
-            "free_limit": FREE_FIGURES,
-            "free_used": _free_used(state),
-            "free_remaining": max(0, FREE_FIGURES - _free_used(state)),
-            "free_available": max(0, FREE_FIGURES - _free_used(state) - sum(
-                1 for item in state["reservations"].values() if item.get("source") == "free")),
+            # Legacy fields continue to describe Reference Reconstruction.
+            "free_limit": TRIAL_LIMITS[REFERENCE_RECONSTRUCTION],
+            "free_used": trial_used[REFERENCE_RECONSTRUCTION],
+            "free_remaining": trial_remaining[REFERENCE_RECONSTRUCTION],
+            "free_available": trial_available[REFERENCE_RECONSTRUCTION],
+            "trial_limits": dict(TRIAL_LIMITS),
+            "trial_used": trial_used,
+            "trial_remaining": trial_remaining,
+            "trial_available": trial_available,
             "cost_per_figure": 0,
             "buyout_price_cny": 39,
-            "free_reserved": sum(1 for item in state["reservations"].values() if item.get("source") == "free"),
+            "free_reserved": trial_reserved[REFERENCE_RECONSTRUCTION],
+            "trial_reserved": trial_reserved,
             "licenses": licenses,
             "pending_reservations": len(state["reservations"]),
         }
@@ -372,6 +418,7 @@ def build_parser() -> argparse.ArgumentParser:
     reserve = subparsers.add_parser("reserve")
     reserve.add_argument("--usage-id", required=True)
     reserve.add_argument("--artifact-sha256", required=True)
+    reserve.add_argument("--mode", choices=tuple(TRIAL_LIMITS), default=DEFAULT_USAGE_MODE)
     reserve.set_defaults(func=command_reserve)
 
     for name, function in (("commit", command_commit), ("cancel", command_cancel)):

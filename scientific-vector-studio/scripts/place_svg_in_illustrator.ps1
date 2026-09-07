@@ -13,6 +13,8 @@ param(
     [int]$DelayMs = 0,
     [string]$PythonExecutable,
     [string]$UsageId,
+    [ValidateSet('reference_reconstruction', 'scientific_asset_drawing')]
+    [string]$FeatureMode = 'reference_reconstruction',
     [string]$LicenseStatePath,
     [string]$LicenseConfigPath,
     [switch]$DryRun
@@ -61,7 +63,7 @@ $job = @{
     outputAi = $destinationFiles['ai']; outputPng = $destinationFiles['png']
 }
 $bridgeText = [IO.File]::ReadAllText((Join-Path $PSScriptRoot 'illustrator_document_bridge.jsx'))
-$reservationArgs = @{ Python = $interpreter; UsageId = $UsageId; LicenseStatePath = $LicenseStatePath; LicenseConfigPath = $LicenseConfigPath }
+$reservationArgs = @{ Python = $interpreter; UsageId = $UsageId; FeatureMode = $FeatureMode; LicenseStatePath = $LicenseStatePath; LicenseConfigPath = $LicenseConfigPath }
 Write-Verbose 'Reserving this figure before document transfer.'
 $reservation = Start-SvsUsage @reservationArgs -InputSvg $sourceFile
 $delivered = $false

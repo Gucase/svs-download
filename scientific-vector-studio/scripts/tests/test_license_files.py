@@ -59,16 +59,17 @@ class LicenseFileTests(unittest.TestCase):
     def status(self):
         return self.call(lm.command_status)
 
-    def reserve(self, usage, expected=0):
-        return self.call(lm.command_reserve, expected=expected, usage_id=usage, artifact_sha256="a" * 64)
+    def reserve(self, usage, expected=0, mode=lm.REFERENCE_RECONSTRUCTION):
+        return self.call(lm.command_reserve, expected=expected, usage_id=usage,
+                         artifact_sha256="a" * 64, mode=mode)
 
     def commit(self, usage):
         return self.call(lm.command_commit, usage_id=usage)
 
-    def exhaust_trial(self):
-        for i in range(lm.FREE_FIGURES):
-            self.reserve(str(i))
-            self.commit(str(i))
+    def exhaust_trial(self, mode=lm.REFERENCE_RECONSTRUCTION):
+        for i in range(lm.TRIAL_LIMITS[mode]):
+            self.reserve("%s-%d" % (mode, i), mode=mode)
+            self.commit("%s-%d" % (mode, i))
 
     def test_one_figure_then_purchase(self):
         self.exhaust_trial()
@@ -78,6 +79,38 @@ class LicenseFileTests(unittest.TestCase):
         self.assertIn("XBBen01", result["message"])
         self.assertNotIn("K" + "BBen01", result["message"])
         self.assertEqual(self.status()["free_remaining"], 0)
+
+    def test_asset_drawing_allows_two_figures_then_purchase(self):
+        mode = lm.SCIENTIFIC_ASSET_DRAWING
+        self.reserve("asset-1", mode=mode)
+        self.commit("asset-1")
+        self.reserve("asset-2", mode=mode)
+        self.commit("asset-2")
+        result = self.reserve("asset-3", expected=4, mode=mode)
+        self.assertTrue(result["purchase_required"])
+        self.assertIn("科研图元绘制", result["message"])
+        self.assertEqual(self.status()["trial_remaining"][mode], 0)
+
+    def test_trial_allowances_are_independent(self):
+        self.exhaust_trial(lm.REFERENCE_RECONSTRUCTION)
+        self.reserve("asset-1", mode=lm.SCIENTIFIC_ASSET_DRAWING)
+        self.commit("asset-1")
+        status = self.status()
+        self.assertEqual(status["trial_remaining"][lm.REFERENCE_RECONSTRUCTION], 0)
+        self.assertEqual(status["trial_remaining"][lm.SCIENTIFIC_ASSET_DRAWING], 1)
+
+    def test_legacy_unscoped_usage_counts_as_reference_reconstruction(self):
+        state = lm._empty_state()
+        state["completed"]["legacy"] = {"source": "free", "cost": 0}
+        self.state.write_text(json.dumps(state))
+        status = self.status()
+        self.assertEqual(status["trial_used"][lm.REFERENCE_RECONSTRUCTION], 1)
+        self.assertEqual(status["trial_used"][lm.SCIENTIFIC_ASSET_DRAWING], 0)
+
+    def test_usage_id_cannot_cross_feature_modes(self):
+        self.reserve("same-id", mode=lm.REFERENCE_RECONSTRUCTION)
+        with self.assertRaisesRegex(RuntimeError, "USAGE_MODE_MISMATCH"):
+            self.reserve("same-id", mode=lm.SCIENTIFIC_ASSET_DRAWING)
 
     def test_pending_free_reservation_does_not_allow_second(self):
         self.reserve("first")
@@ -116,6 +149,14 @@ class LicenseFileTests(unittest.TestCase):
         self.assertTrue(status["unlimited"])
         self.assertEqual(status["cost_per_figure"], 0)
         self.assertEqual(status["free_used"], 1)
+
+    def test_one_buyout_unlocks_both_modes(self):
+        self.activate()
+        for mode in (lm.REFERENCE_RECONSTRUCTION, lm.SCIENTIFIC_ASSET_DRAWING):
+            result = self.reserve("paid-" + mode, mode=mode)
+            self.assertEqual(result["source"], "lifetime")
+            self.commit("paid-" + mode)
+        self.assertTrue(self.status()["unlimited"])
 
     def test_buyout_before_trial_preserves_free_allowance(self):
         self.activate()
